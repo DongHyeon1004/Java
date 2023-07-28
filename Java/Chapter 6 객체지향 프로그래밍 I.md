@@ -549,3 +549,187 @@ change메서드의 매개변수가 잠초형이라서 값이 저장된 주소를
 1. change메서드가 호출되면서 참조변수 d의 값(주소)이 매개변수 d에 복사.
 2. change메서드에서 매개변수 d로 x의 값을 1000으로 변경.
 3. change메서드가 종료되면서 매개변수 d는 스택에서 제거.
+
+```java
+class ReferenceParamEx2 {
+    public static void main(String[] args) {
+        int x[] = { 10 };
+        System.out.println("main() : x = " + x[0]); // main() : x = 10
+
+        change(x);
+        System.out.println("After change(x)");
+        System.out.println("main() : x = " + x[0]); // main() : x = 1000
+    }
+
+    static void change(int x[])
+    {
+        x[0] = 1000;
+        System.out.println("change() : x = " + x[0]); // change() : x = 1000
+    }
+}
+```
+
+변수 x도 int배열 타입의 참조 변수이기 때문에 앞에 예시와 같은 결과를 얻는다.
+
+## 참조형 반환타입
+
+```java
+class Data { int x; }
+
+class ReferenceReturnEx {
+    public static void main(String[] args) {
+        Data d = new Data();
+        d.x = 10;
+        
+        Data d2 = copy(d);
+        System.out.println("d.x = " + d.x); // d.x = 10
+        System.out.println("d2.x = " + d2.x); // d2.x = 10
+    }
+    
+    static Data copy(Data d)
+    {
+        Data tmp = new Data();
+        tmp.x = d.x;
+        
+        return tmp;
+    }
+}
+```
+
+1. copy메서드를 호출하면서 참조변수 d의 갑이 매개변수 d에 복사.
+2. 새로운 객체를 생성한 다음, d.x에 저장된 값을 tmp.x에 저장.
+3. copy메서드가 종료되면서 반환한 tmp의 값은 참조변수 d2에 저장.
+4. cpoy메서드가 종료되어 tmp가 사라졌지만, d2로 새로운 객체를 다룰 수 있음.
+
+**반환 타입이 참조형이다. = 메서드가 객체의 주소를 반환한다.**
+
+## 재귀호출(recursive call)
+
+**재귀호출** : 메서드 내부에서 메서드 자신을 다시 호출하는 것
+
+```java
+void method() {
+		 method();
+}
+// 무한히 자기 자신을 호출하기 때문에 무한반복에 빠지게 된다.
+// 조건문이 필수적으로 필요하다. 
+```
+
+- 호출된 메서드는 값에 의한 호출(call by value)을 통해, 원래의 값이 아닌 복사된 값으로 작업하기 때문에 호출한 메서드와 관계없이 독립적인 수행이 가능하다.
+- 메서드를 호출하는 것은 매개변수 복사와 종료 후 복귀할 주소 저장 등 반복문보다 몇 가지 과정이 추가로 필요하기 때문에 재귀호출의 수행시간이 더 길다.
+- 재귀호출은 비효율적이므로 재귀호출에 드는 비용보다 재귀호출의 간결함이 주는 이득이 충분히 큰 경우에만 사용해야 한다.
+
+**재귀호출을 사용하는 이유**
+
+- **논리적 간결함**
+    - 몇 겹의 반복문과 조건문으로 복잡하게 작성된 코드가 재귀호출로 작성하면 보다 단순한 구조로 바뀔 수 있다.
+    - 다소 비효율적이라도 알아보기 쉽게 작성하는 것이 논리적 오류가 발생할 확률도 줄어들고 나중에 수정하기도 편리하다.
+
+```java
+class FactorialTest {
+    public static void main(String[] args) {
+        int result = factorial(2);
+
+        System.out.println(result);
+    }
+
+    static int factorial(int n) {
+        if (n == 1) return 1;
+				return n * factorial(n - 1);
+    }
+}
+```
+
+factorial(2) 호출 시 실행과정
+
+1. factorial(2)를 호출하면서 매개변수 n에 2가 복사된다.
+2. return 2 * factorial(1); 을 계산하려면 factorial(1)을 호출한 결과가 필요하다. 그래서 factorial(1)이 호출되고 매개변수 n에 1이 복사된다.
+3. if문의 조건식이 참이므로 1을 반환하면서 메서드는 종료된다. 그리고 factorial(1)을 호출한 곳으로 돌아간다.
+4. 이제 factorial(1)의 결과값인 1을 얻었으므로, return문이 다음의 과정으로 계산된다.
+    
+    return 2 * factorial(1); 
+    
+    → return 2 * 1;
+    
+    → return 2;
+    
+    factorial(2)는 종료되면서 결과값 2를 반환하고, 이 값은 result에 저장된다.
+    
+
+매개변수의 값이 올바르지 않으면 어느 시점에 이르러서는 스택의 저장 한계를 넘게 되고, 스택 오버플로우 에러가 발생한다. 매개변수의 유효성 검사가 중요한 이유다.
+
+## 클래스 메서드(static 메서드)와 인스턴스 메서드
+
+- 인스턴스 메서드는 인스턴스 변수와 관련된 작업을 하는, 즉 메서드의 작업을 수행하는데 인스턴스 변수를 필요로 하는 메서드이다.
+- 인스턴스와 관계없는(인스턴스 변수나 인스턴스 메서드를 사용하지 않는) 메서드를 클래스 메서드(static 메서드)로 정의한다.
+
+1. **클래스를 설계할 때, 멤버변수 중 모든 인스턴스에 공통으로 사용하는 것에 static을 붙인다.**
+    
+    모든 인스턴스에서 같은 값이 유지되어야 하는 변수는 static을 붙여서 클래스 변수로 정의해야 한다.
+    
+2. **클래스 변수(static 변수)는 인스턴스를 생성하지 않아도 사용할 수 있다.**
+    
+    클래스 변수는 클래스가 메모리에 올라갈 때 이미 자동적으로 생성되기 때문이다.
+    
+3. **클래스 메서드(static 메서드)는 인스턴스 변수를 사용할 수 없다.**
+    
+    클래스 메서드는 인스턴스 생성 없이 호출 가능하므로 클래스 메서드가 호출되었을 때 인스턴스가 존재하지 않을 수도 있다. 그래서 클래스 메서드에서 인스턴스 변수의 사용을 금지한다.
+    
+    인스턴스 변수나 인스턴스 메서드에서는 static이 붙은 멤버들을 사용하는 것이 언제나 가능하다. 인스턴스 변수가 존재한다는 것은 static변수가 이미 메모리에 존재한다는 것을 의미한다.
+    
+4. **메서드 내에서 인스턴스 변수를 사용하지 않는다면, static을 붙이는 것을 고려한다.**
+    
+    static을 안 붙인 메서드(인스턴스 메서드)는 실행 시 호출되어야 할 메서드를 찾는 과정이 추가적으로 필요하기 때문에 시간이 더 걸린다.
+    
+
+## 클래스 멤버와 인스턴스 멤버간의 참조와 호출
+
+- 같은 클래스에 속한 멤버들 간에는 인스턴스를 생성하지 않고도 서로 참조 / 호출이 가능하다.
+- **인스턴스 멤버가 존재하는 시점에 클래스 멤버는 항상 존재하지만, 클래스멤버가 존재하는 시점에 인스턴스 멤버가 존재하지 않을 수도 있기 때문**에, 클래스 멤버가 인스턴스 멤버를 참조 / 호출하는 경우 인스턴스를 생성해야 한다.
+
+```java
+class MemberCall {
+    int iv = 10;
+    static int cv = 20;
+    
+    int iv2 = cv;
+    // static int cv2 = iv; // 에러. 클래스 변수는 인스턴스 변수를 사용할 수 없음.
+    static int cv2 = new MemberCall().iv; // 객체를 생성해야 사용 가능.
+    
+    static void staticMethod1()
+    {
+        System.out.println(cv);
+        //System.out.println(iv); // 에러. 클래스 변수는 인스턴스 변수를 사용할 수 없음.
+        MemberCall c = new MemberCall();
+        System.out.println(c.iv); // 객체를 생성한 후에야 인스턴스 변수의 참조 가능.
+    }
+    
+    void instanceMethod1()
+    {
+        System.out.println(cv);
+        System.out.println(iv); // 인스턴스 메서드에서는 인스턴스 변수를 바로 사용가능.
+    }
+    
+    static void staticMethod2()
+    {
+        staticMethod1();
+        //instanceMethod1(); // 에러. 클래스 메서드에서는 인스턴스 메서드를 호출할 수 없음.
+        MemberCall c = new MemberCall();
+        c.instanceMethod1(); // 인스턴스를 생성한 후에 호출 가능.
+    }
+    
+    void instanceMethod2() // 인스턴스 메서드에서는 인스턴스 메서드와 클래스 메서드 모두 
+		{                      // 인스턴스 생성없이 바로 호출 가능.
+        staticMethod1();
+        instanceMethod1();
+    }
+}
+```
+
+- 클래스 멤버(클래스 변수, 클래스 메서드)는 언제나 참조 / 호출이 가능.
+- 인스턴스 멤버(인스턴스 변수, 인스턴스 메서드)는 반드시 객체를 생성한 후에 참조 / 호출 가능.
+- 하지만, **인스턴스 멤버간의 호출에는 문제가 없음. 하나의 인스턴스 멤버가 존재한다는 것은 인스턴스가 이미 생성됐다는 것을 의미하며, 즉 다른 인스턴스 멤버들도 모두 존재하기 때문.**
+
+# 오버로딩
+
+## 오버로딩이란?
