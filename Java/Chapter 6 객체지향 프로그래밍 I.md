@@ -131,7 +131,7 @@ class TvTest {
     
     인스턴스가 생성되지 않았으므로 아무것도 할 수 없음.
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-1.png)
     
 2. **t = new Tv();**
     
@@ -141,13 +141,13 @@ class TvTest {
     
     멤버변수는 각 자료형에 해당하는 기본값으로 초기화.
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%201.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-2.png)
     
     대입연산자 = 에 의해서 생성된 객체의 주소 값이 참조변수 t에 저장.
     
     참조변수 t를 통해 Tv인스턴스 접근 가능.
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%202.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-3.png)
     
 3. **t.channel = 7 ;**
     
@@ -155,7 +155,7 @@ class TvTest {
     
     인스턴스의 멤버 변수(속성)를 사용하려면 **참조변수.멤버변수**
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%203.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-4.png)
     
 4. **t.channelDown();**
     
@@ -163,7 +163,7 @@ class TvTest {
     
     channel 값 7 → 6
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%204.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-5.png)
     
 5. **System.out.println(”현재 채널은 “ + t.channel + “ 입니다.”);**
     
@@ -468,7 +468,7 @@ int add(int x, int y)
 
 응용프로그램이 실행되면, JVM은 시스템으로부터 프로그램을 수행하는데 필요한 메모리를 할당 받고 이 메모리를 용도에 따라 여러 영역으로 나누어 관리함.
 
-![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%205.png)
+![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-6.png)
 
 1. **메서드 영역(method area)**
     - 프로그램 실행 중 어떤 클래스가 사용되면, 해당 클래스의 클래스파일(*.class)을 읽고 분석하여 클래스에 대한 정보(클래스 데이터)를 저장.
