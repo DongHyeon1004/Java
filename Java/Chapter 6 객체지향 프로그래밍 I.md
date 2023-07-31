@@ -131,7 +131,7 @@ class TvTest {
     
     인스턴스가 생성되지 않았으므로 아무것도 할 수 없음.
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-1.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled.png)
     
 2. **t = new Tv();**
     
@@ -141,13 +141,13 @@ class TvTest {
     
     멤버변수는 각 자료형에 해당하는 기본값으로 초기화.
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-2.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%201.png)
     
     대입연산자 = 에 의해서 생성된 객체의 주소 값이 참조변수 t에 저장.
     
     참조변수 t를 통해 Tv인스턴스 접근 가능.
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-3.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%202.png)
     
 3. **t.channel = 7 ;**
     
@@ -155,7 +155,7 @@ class TvTest {
     
     인스턴스의 멤버 변수(속성)를 사용하려면 **참조변수.멤버변수**
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-4.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%203.png)
     
 4. **t.channelDown();**
     
@@ -163,7 +163,7 @@ class TvTest {
     
     channel 값 7 → 6
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-5.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%204.png)
     
 5. **System.out.println(”현재 채널은 “ + t.channel + “ 입니다.”);**
     
@@ -468,7 +468,7 @@ int add(int x, int y)
 
 응용프로그램이 실행되면, JVM은 시스템으로부터 프로그램을 수행하는데 필요한 메모리를 할당 받고 이 메모리를 용도에 따라 여러 영역으로 나누어 관리함.
 
-![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-6.png)
+![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%205.png)
 
 1. **메서드 영역(method area)**
     - 프로그램 실행 중 어떤 클래스가 사용되면, 해당 클래스의 클래스파일(*.class)을 읽고 분석하여 클래스에 대한 정보(클래스 데이터)를 저장.
@@ -730,6 +730,203 @@ class MemberCall {
 - 인스턴스 멤버(인스턴스 변수, 인스턴스 메서드)는 반드시 객체를 생성한 후에 참조 / 호출 가능.
 - 하지만, **인스턴스 멤버간의 호출에는 문제가 없음. 하나의 인스턴스 멤버가 존재한다는 것은 인스턴스가 이미 생성됐다는 것을 의미하며, 즉 다른 인스턴스 멤버들도 모두 존재하기 때문.**
 
+---
+
 # 오버로딩
 
 ## 오버로딩이란?
+
+자바에서는 한 클래스 내에 이미 사용하려는 이름과 같은 이름을 가진 메서드가 있더라도 매개변수의 개수 또는 타입이 다르면, 같은 이름을 사용해서 메서드를 정의할 수 있다.
+
+**오버로딩** : 한 클래스 내에서 같은 이름의 메서드를 여러 개 정의한 것
+
+## 오버로딩의 조건
+
+1. 메서드 이름이 같아야 한다.
+2. 매개변수의 개수 또는 타입이 달라야 한다.
+
+**반환 타입은 오버로딩을 구현하는데 아무런 영향을 주지 못한다.**
+
+## **오버로딩의 예**
+
+- **println메서드**
+    
+    println메서드를 호출할 때 매개변수로 지정하는 값의 타입에 따라서 호출되는 println메서드가 달라진다.
+    
+    ```java
+    PrintStream 클래스에 오버로딩된 println메서드 정의
+    
+    void println()
+    void println(boolean x)
+    void println(char x)
+    void println(char[] x)
+    void println(double x)
+    void println(float x)
+    void println(int x)
+    void println(long x)
+    void println(Object x)
+    void println(String x)
+    ```
+    
+- **예시 1**
+    
+    ```java
+    int add(int a, int b) { return a + b; }
+    int add(int x, int y) { return x + y; }
+    ```
+    
+    매개변수의 이름만 다를 뿐 매개변수의 타입이 같기 때문에 오버로딩이 성립하지 않는다.
+    
+- **예시 2**
+    
+    ```java
+    int add(int a, int b) { return a + b; }
+    long add(int a, int b) { return a + b; }
+    ```
+    
+    리턴 타입만 다르고, 매개변수의 타입과 개수가 일치하기 때문에 add(3,3)을 호출했을 때 어떤 메서드가 호출된 것인지 결정할 수 없기 때문에 오버로딩으로 간주되지 않는다.
+    
+- **예시 3**
+    
+    ```java
+    long add(int a, long b) { return a + b; }
+    long add(long a, int b) { return a + b; }
+    ```
+    
+    호출 시 매개변수의 값에 의해 호출될 메서드가 구분될 수 있으므로 중복된 메서드가 아닌, 오버로딩으로 간주한다.
+    
+    매개변수의 순서만을 다르게 하여 오버로딩을 구현하면, 사용자가 매개변수의 순서를 외우지 않아도 되는 장점이 있지만, 오히려 단점이 될 수 있다.
+    
+    add(3,3)을 호출하는 경우 두 메서드 중 어느 메서드가 호출된 것인지 알 수 없기 때문에 메서드를 호출하는 곳에서 컴파일 에러가 발생한다.
+    
+- **예시 4**
+    
+    ```java
+    int add(int a, int b) { return a + b; }
+    long add(long a, long b) { return a + b; }
+    long add(int a[]) 
+    {
+    		long result = 0;
+    		
+    		for (int i = 0; i < a.length; i++)
+    		{
+    					result += a[i];
+    		}
+    		return result;
+    }
+    ```
+    
+    같은 일을 하지만 매개변수를 달리 해야하는 경우에, 이렇게 이름은 같고 매개변수를 다르게 하여 오버로딩을 구현한다.
+    
+
+## 오버로딩의 장점
+
+1. 여러 메서드들이 하나의 이름으로 정의될 수 있다면, 이름만 기억하면 되므로 기억하기도 쉽고 이름도 짧게 할 수 있어서 오류의 가능성을 많이 줄일 수 있다.
+2. 메서드의 이름만 보고도 ‘이름이 같으니, 같은 기능을 하겠구나’라고 쉽게 예측할 수 있다.
+3. 하나의 이름으로 여러 개의 메서드를 정의할 수 있으니, 메서드의 이름을 짓는데 고민을 덜 수 있는 동시에 사용됐어야 할 메서드 이름을 다른 메서드의 이름으로 사용할 수 있다.
+
+## 가변인자(varargs)와 오버로딩
+
+**가변인자** : 메서드의 매개변수 개수를 동적으로 지정해 주는 것. **타입… 변수명** 형식으로 선언
+
+```java
+public PrintScream printf(String format, Object… args) { … }
+```
+
+가변인자 외에도 매개변수가 더 있다면, 가변인자인지 아닌지를 구별할 방법이 없기 때문에 가변인자를 매개변수 중에서 제일 마지막에 선언해야 한다.
+
+```java
+public PrintStream printf(Object... args, String format) { ... } //컴파일 에러 발생.
+```
+
+```java
+String concatenate(String... str) { ... }
+
+System.out.println(concatenate()); // 인자 없음
+System.out.println(concatenate("a")); // 인자 하나
+System.out.println(concatenate("a", "b")); // 인자 둘
+System.out.println(concatenate(new String[]{"A","B"})); // 배열도 가능
+```
+
+가변인자는 내부적으로 배열을 이용하는 것이기 때문에 가변인자가 선언된 메서드를 호출할 때마다 배열이 새로 생성된다. 가변인자가 편리하지만, 비효율이 숨어있으므로 꼭 필요한 경우에만 가변인자를 사용하는 것이 좋다.
+
+---
+
+# 생성자(Constructor)
+
+## 생성자란?
+
+**생성자** : 인스턴스가 생성될 때 호출되는 인스턴스 초기화 메서드
+
+- 인스턴스 변수의 초기화 작업에 주로 사용되고, 인스턴스 생성 시에 실행되어야 할 작업을 위해서도 사용됨.
+- 메서드처럼 클래스 내에 선언되며, 구조도 메서드와 유사하지만 리턴값이 없다. 생성자 앞에 void를 사용하지 않고, 아무것도 적지 않는다.
+- 생성자의 조건
+    1. 생성자의 이름은 클래스의 이름과 같아야 한다.
+    2. 생성자는 리턴 값이 없다.
+
+**생성자 정의 방법**
+
+```java
+클래스이름(타입 변수명, 타입 변수명, ...) {
+		// 인스턴스 생성 시 수행될 코드,
+		// 주로 인스턴스 변수의 초기화 코드
+}
+
+class Card() {
+		Card() {  // 매개변수가 없는 생성자
+				...
+		}
+
+		Card(String k, int num) {  // 매개변수가 있는 생성자
+				...
+		}
+		...
+}
+```
+
+연산자 new가 인스턴스를 생성하는 것이지 생성자가 인스턴스를 생성하는 것이 아니다
+
+**Card c = new Card();**
+
+1. 연산자 new에 의해서 메모리(heap)에 Card클래스의 인스턴스가 생성된다.
+2. 생성자 Card()가 호출되어 수행된다.
+3. 연산자 new의 결과로, 생성된 Card인스턴스의 주소가 반환되어 참조변수 c에 저장된다.
+
+## 기본 생성자(default constructor)
+
+**기본 생성자** : 클래스에는 반드시 하나 이상의 생성자가 정의되어 있어야 하지만, 클래스에 생성자를 정의하지 않고도 인스턴스를 생성할 수 있게 해주는 것
+
+```java
+클래스이름() { }
+
+Card() { } // 매개변수도 없고 아무런 내용도 없는 간단한 것
+```
+
+컴파일 할 때, 소스파일의 클래스에 생성자가 하나도 정의되지 않은 경우 컴파일러는 자동적으로 기본 생성자를 추가하여 컴파일한다.
+
+```java
+class Data1 {
+    int value;
+}
+
+class Data2 {
+    int value;
+
+    Data2 (int x) {
+        value = x;
+    }
+}
+
+class ConstructorTest {
+    public static void main(String[] args) {
+        Data1 d1 = new Data1;
+        Data2 d2 = new Data2; // 컴파일 에러 발생
+    }
+}
+```
+
+Data1에는 정의되어 있는 생성자가 하나도 없으므로 컴파일러가 기본 생성자를 추가해주었지만, Data2에는 이미 생성자 Data2(int x)가 정의되어 있으므로 기본 생성자가 추가되지 않았기 때문에 컴파일 에러가 발생한다.
+
+**기본 생성자가 컴파일러에 의해서 추가되는 경우는 클래스에 정의된 생성자가 하나도 없을 때 뿐**
+
+## 매개변수가 있는 생성자
