@@ -116,7 +116,7 @@ class CaptionTvTest {
 ```java
 class Circle {                            class Circle {
 	int x;                                  Point c = new Point();
-	int y;              **-->**             int r;
+	int y;             -->                  int r;
 	int r;                            }
 }
 
