@@ -13,8 +13,8 @@
 상속을 구현하는 방법
 새로 작성하고자 하는 클래스의 이름 뒤에 상속받고자 하는 클래스의 이름을 extends와 함께 작성.
 
-class Child **extends Parent** {
-			...
+class Child extends Parent {
+	...
 }
 ```
 
@@ -41,13 +41,13 @@ class Child extends Parent { }
 
 ```java
 class Parent {
-			int age;
+	int age;
 }
 
 class Child extends Parent {
-			void play() {
-					System.out.println("놀자~");
-			}
+	void play() {
+		System.out.println("놀자~");
+	}
 }
 ```
 
@@ -115,8 +115,8 @@ class CaptionTvTest {
 
 ```java
 class Circle {                            class Circle {
-	int x;                                 **Point c = new Point();**
-	int y;              **-->**                int r;
+	int x;                                  Point c = new Point();
+	int y;              **-->**             int r;
 	int r;                            }
 }
 
