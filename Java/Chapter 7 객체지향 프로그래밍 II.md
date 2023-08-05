@@ -114,15 +114,15 @@ class CaptionTvTest {
 **포함 관계를 맺어준다 = 한 클래스의 멤버변수로 다른 클래스 타입의 참조변수를 선언한다**
 
 ```java
-class Circle {                         class Circle {
-			int x;                                 **Point c = new Point();**
-			int y;              **-->**                int r;
-			int r;                           }
+class Circle {                            class Circle {
+	int x;                                 **Point c = new Point();**
+	int y;              **-->**                int r;
+	int r;                            }
 }
 
 class Point {
-			int x;
-			int y;
+	int x;
+	int y;
 }
 ```
 
