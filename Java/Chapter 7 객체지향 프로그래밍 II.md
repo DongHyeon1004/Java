@@ -13,8 +13,8 @@
 상속을 구현하는 방법
 새로 작성하고자 하는 클래스의 이름 뒤에 상속받고자 하는 클래스의 이름을 extends와 함께 작성.
 
-class Child extends Parent {
-	...
+class Child **extends Parent** {
+			...
 }
 ```
 
@@ -41,13 +41,13 @@ class Child extends Parent { }
 
 ```java
 class Parent {
-	int age;
+			int age;
 }
 
 class Child extends Parent {
-	void play() {
-		System.out.println("놀자~");
-	}
+			void play() {
+					System.out.println("놀자~");
+			}
 }
 ```
 
@@ -114,15 +114,15 @@ class CaptionTvTest {
 **포함 관계를 맺어준다 = 한 클래스의 멤버변수로 다른 클래스 타입의 참조변수를 선언한다**
 
 ```java
-class Circle {                            class Circle {
-	int x;                                  Point c = new Point();
-	int y;             -->                  int r;
-	int r;                            }
+class Circle {                         class Circle {
+			int x;                                 **Point c = new Point();**
+			int y;              **-->**                int r;
+			int r;                           }
 }
 
 class Point {
-	int x;
-	int y;
+			int x;
+			int y;
 }
 ```
 
@@ -142,3 +142,165 @@ ex)
 **상속관계** : ‘-은 -이다.(is-a)’
 
 **포함관계** : ‘-은 -을 가지고 있다.(has-a)’
+
+```java
+class DeckTest {
+    public static void main(String[] args) {
+        Deck d = new Deck();
+        Card c = d.pick(0);
+        System.out.println(c);
+
+        d.shuffle();
+        c = d.pick(0);
+        System.out.println(c);
+    }
+}
+
+class Deck {
+    final int CARD_NUM = 52;
+    Card cardArr[] = new Card[CARD_NUM];
+
+    Deck() {
+        int i = 0;
+
+        for (int k = Card.KIND_MAX; k > 0; k--)
+            for (int n = 0; n < Card.NUM_MAX; n++)
+                cardArr[i++] = new Card(k, n + 1);
+    }
+
+    Card pick(int index) {
+        return cardArr[index];
+    }
+
+    Card pick() {
+        int index = (int)(Math.random() * CARD_NUM);
+        return pick(index);
+    }
+
+    void shuffle() {
+        for (int i = 0; i < cardArr.length; i++)
+        {
+            int r = (int)(Math.random() * CARD_NUM);
+
+            Card temp = cardArr[i];
+            cardArr[i] = cardArr[r];
+            cardArr[r] = temp;
+        }
+    }
+}
+
+class Card {
+    static final int KIND_MAX = 4;
+    static final int NUM_MAX = 13;
+
+    static final int SPADE = 4;
+    static final int DIAMOND = 3;
+    static final int HEART = 2;
+    static final int CLOVER = 1;
+    int kind;
+    int number;
+
+    Card() {
+        this(SPADE, 1);
+    }
+
+    Card(int kind, int number) {
+        this.kind = kind;
+        this.number = number;
+    }
+
+    public String toString() {
+        String kinds[] = {"", "CLOVER", "HEART", "DIAMOND", "SPADE"};
+        String numbers = "0123456789XJQK";
+
+        return "kind : " + kinds[this.kind] + ", number : " + numbers.charAt(this.number);
+    }
+}
+```
+
+pick(0)을 호출하면, 매개변수 index의 값이 0이 되므로, cardArr[0]에 저장된 Card객체의 주소가 참조변수 c에 저장된다.
+
+예를 들어, index의 값이 0이고, cardArr[0]의 값이 0x200이라면 pick(0)은 다음 과정을 통해 계산된다
+
+return cardArr[index];
+
+→ return cardArr[0];
+
+→ return 0x200;
+
+그래서 참조변수 c에 cardArr[0]에 저장된 Card인스턴스의 주소가 저장된다.
+
+## 단일 상속(single inheritance)
+
+자바에서는 오직 단일 상속만을 허용하기 때문에 둘 이상의 클래스로부터 상속을 받을 수 없다.
+
+```java
+class TVCR extends TV, VCR {  // 에러. 조상은 하나만 허용.
+			...
+{
+```
+
+다중 상속을 허용할 경우 여러 클래스로부터 상속 받을 수 있기 때문에 복합적인 기능을 가진 클래스를 쉽게 작성할 수 있지만, 클래스간의 관계가 매우 복잡해지고, 서로 다른 클래스로부터 상속 받은 멤버간의 이름이 같은 경우 구별할 수 있는 방법이 없다.
+
+단일 상속의 경우 하나의 조상 클래스만을 가질 수 있기 때문에 다중 상속에 비해 불편하지만, 클래스 간의 관계가 보다 명확해지고 코드를 더욱 신뢰할 수 있게 만들어준다.
+
+```java
+class Tv {
+    boolean power;
+    int channel;
+    void power() { power = !power; }
+    void channelUp() { ++channel; }
+    void channelDown() { --channel; }
+}
+
+class VCR {
+    boolean power;
+    int counter = 0;
+    void power() { power = !power; }
+    void play() { /*내용생략*/}
+    void stop() { /*내용생략*/}
+    void rew() { /*내용생략*/}
+    void ff() { /*내용생략*/}
+}
+
+class TVCR extends Tv {
+    VCR vcr = new VCR();
+
+    void play() {
+        vcr.play();
+    }
+
+    void stop() {
+        vcr.stop();
+    }
+
+    void rew() {
+        vcr.rew();
+    }
+
+    void ff() {
+        vcr.ff();
+    }
+}
+```
+
+다중 상속을 허용하지 않으므로 Tv클래스를 조상으로 하고, VCR클래스는 TVCR클래스에 포함시켰다. 그리고 TVCR클래스에 VCR클래스의 메서드와 일치하는 선언부를 가진 메서드를 선언하고 내용은 VCR클래스의 것을 호출해서 사용하도록 했다.
+
+외부적으로는 TVCR클래스의 인스턴스를 사용하는 것처럼 보이지만 내부적으로는 VCR클래스의 인스턴스를 생성해서 사용하는 것이다.
+
+## Object클래스 - 모든 클래스의 조상
+
+**Object클래스** : 모든 클래스 상속계층도의 최상위에 있는 조상 클래스
+
+다른 클래스로부터 상속 받지 않는 모든 클래스들은 자동적으로 Object클래스로부터 상속받게 함으로써 가능하다.
+
+```java
+class Tv {
+			...
+}
+
+//컴파일시 자동적으로 extends Object를 추가한다.
+class Tv **extends Object** {
+			...
+}
+```
