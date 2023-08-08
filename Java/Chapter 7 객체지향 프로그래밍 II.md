@@ -304,3 +304,120 @@ class Tv **extends Object** {
 			...
 }
 ```
+
+자동적으로 추가함으로써 Object클래스가 모든 클래스의 조상이 되도록 한다.
+
+모든 상속계층도의 최상위에는 Object클래스가 위치하기 때문에 자바의 모든 클래스들은 Object클래스의 멤버들을 상속 받기 때문에 Object클래스에 정의된 멤버들을 사용할 수 있다.
+
+toString()이나 equals(Object s) 같은 메서드를 따로 정의하지 않고 사용할 수 있었던 이유는 이 메서드들이 Object클래스에 정의된 것들이기 때문이다.
+
+# 오버라이딩(overriding)
+
+## 오버라이딩이란?
+
+**오버라이딩** : 조상 클래스로부터 상속 받은 메서드의 내용을 변경하는 것
+
+상속 받은 메서드를 자손 클래스에 맞게 변경해야하는 경우에 오버라이딩한다.
+
+```java
+class Point {
+		int x;
+		int y;
+
+		String getLocation() {
+					return "x : " + x + ", y : " + y;
+		}
+}
+
+class Point3D extends Point {
+		int z;
+		
+		String getLocation() {    // 오버라이딩
+					return "x : " + x + ", y : " + y + ", z : " + z;
+		}
+}
+```
+
+Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이므로 조상인 Point클래스로부터 상속 받은 getLocation()은 맞지 않기 때문에, 자신에 맞게 z축의 좌표값도 포함하여 반환하도록 오버라이딩 했다.
+
+## 오버라이딩의 조건
+
+자손 클래스에서 오버라이딩하는 메서드는 조상 클래스의 메서드와
+
+- **이름이 같아야 한다.**
+- **매개변수가 같아야 한다.**
+- **반환타입이 같아야 한다.**
+
+즉, 선언부가 서로 일치해야 한다. 
+
+접근 제어자(access modifier)와 예외(exception)는 제한된 조건 하에서만 다르게 변경 가능하다.
+
+1. **접근 제어자는 조상 클래스의 메서드보다 좁은 범위로 변경 할 수 없다.**
+    
+    만약 조상 클래스에 정의된 메서드의 접근 제어자가 protected라면, 오버라이딩하는 자손 클래스의 메서드는 접근 제어가자 protected / public 이어야 한다. 대부분의 경우 같은 범위의 접근 제어자를 사용한다.
+    
+    public → protected → (default) → private
+    
+
+1. **조상 클래스의 메서드보다 많은 수의 예외를 선언할 수 없다.**
+    
+    ```java
+    class Parent {
+    		void parentMethod() throws IOException, SQLException {
+    					...
+    		}
+    }
+    
+    class Child extends Parent {
+    		void parentMethod() throws IOException {
+    					...
+    		}
+    }
+    ```
+    
+    Child클래스의 parentMethod()에 선언된 예외의 개수가 조상인 Parent클래스의 parentMethod()에 선언된 예외의 개수보다 적으므로 바르게 오버라이딩 됐다.
+    
+    ```java
+    class Parent {
+    		void parentMethod() throws IOException, SQLException {
+    					...
+    		}
+    }
+    
+    class Child extends Parent {
+    		void parentMethod() throws Exception {
+    					...
+    		}
+    }
+    ```
+    
+    단순히 선언된 예외의 개수의 문제가 아니다.
+    
+    분명히 조상 클래스에 정의된 메서드보다 적은 개수의 예외를 선언한 것처럼 보이지만 Exception은 모든 예외의 최고 조상이므로 가장 많은 개수의 예외를 던질 수 있도록 선언한 것이다.
+    
+    조건을 만족시키지 못하는 잘못된 오버라이딩이다.
+    
+2. **인스턴스메서드를 static메서드로 또는 그 반대로 변경할 수 없다.**
+
+## 오버로딩 vs 오버라이딩
+
+**오버로딩(overloading)** : 기존에 없는 새로운 메서드를 정의하는 것
+
+**오버라이딩(overriding)** : 상속 받은 메서드의 내용을 변경하는 것
+
+```java
+class Parent {
+		void parentMethod() {}
+}
+
+class Child extends Parent {
+		void parentMethod() {} // 오버라이딩
+		void parentMethod(int i) {} // 오버로딩
+		
+		void childMethod() {}
+		void childMethod(int i) {} // 오버로딩
+		void childMethod() {} // 오류.
+}
+```
+
+## super
