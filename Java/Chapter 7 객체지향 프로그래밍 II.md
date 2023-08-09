@@ -586,3 +586,210 @@ import 패키지명.클래스명;
 	또는
 import 패키지명.*;
 ```
+
+같은 패키지에서 여러 개의 클래스가 사용될 때, 클래스 이름을 지정해주는 대신 *****을 사용하면, 컴파일러는 해당 패키지에서 일치하는 클래스이름을 찾아야 하는 수고를 더 하지만, 실행 시 **성능상의 차이는 전혀 없다.**
+
+한 패키지에서 여러 클래스를 사용하는 경우 **패키지명.*** 과 같이 하는 것이 편리하지만, import하는 패키지의 수가 많을 때는 어느 클래스가 어느 패키지에 속하는지 구별하기 어렵다는 단점이 있다.
+
+import문에서 클래스의 이름 대신 ***** 을 사용하는 것이 하위 패키지의 클래스까지 포함하는 것은 아니다.
+
+import문으로 패키지를 지정하지 않으면 모든 클래스 이름 앞에 패키지명을 반드시 붙여야 하지만, 같은 패키지 내의 클래스들은 import문을 지정하지 않고도 패키지명을 생략할 수 있다.
+
+```java
+import java.lang.*;
+```
+
+모든 소스파일에는 묵시적으로 위의 import문이 선언되어 있기 때문에, System / String같은 java.lang패키지의 클래스들을 패키지명 없이 사용할 수 있다.
+
+java.lang 패키지는 매우 빈번히 사용되는 중요한 클래스들이 속한 패키지이기 때문에 따로 import문으로 지정하지 않아도 되도록 한 것이다.
+
+## static import문
+
+static import문을 사용하면 static멤버를 호출할 때 클래스 이름을 생략할 수 있다. 
+
+특정 클래스의 static멤버를 자주 사용할 때 편리하고, 코드도 간결해진다.
+
+```java
+import static java.lang.Integer.*; // Integer클래스의 모든 static 메서드.
+import static java.lang.Math.random; // Math.random()만.
+import static java.lang.System.out; // System.out을 out만으로 참조 가능.
+
+System.out.println(Math.random()); --> out.println(random());
+```
+
+---
+
+# 제어자(modifier)
+
+## 제어자란?
+
+**제어자** : 클래스, 변수 또는 메서드의 선언부에 함께 사용되어 부가적인 의미를 부여함.
+
+- **접근 제어자** : **pubilc, protected, default, private**
+- **그 외 제어자 : static, final, abstract, native, transient, sychronized, volatile, strictfp**
+
+제어자는 하나의 대상에 대해서 여러 제어자를 조합하여 사용하는 것이 가능하지만, 접근 제어자는 한 번에 네 가지 중 하나만 선택해서 사용할 수 있다.
+
+## static - 클래스의, 공통적인
+
+- **static이 사용될 수 있는 곳 - 멤버변수, 메서드, 초기화 블럭**
+- 인스턴스변수는 하나의 클래스로부터 생성됐더라도 각기 다른 값을 유지하지만, 클래스변수(static멤버변수)는 인스턴스에 관계없이 같은 값을 갖는다. 하나의 변수를 모든 인스턴스가 공유하기 때문이다.
+- static이 붙은 멤버변수와 메서드, 그리고 초기화 블럭은 인스턴스가 아닌 클래스에 관게된 것이기 때문에 인스턴스를 생성하지 않고도 사용할 수 있다.
+- 인스턴스메서드와 static메서드의 근본적인 차이는 메서드 내에서 인스턴스 멤버를 사용하는가의 여부에 있다.
+- static메서드로 하는 것이 인스턴스를 생성하지 않고도 호출이 가능해서 더 편리하고 속도도 빠르다.
+
+## final - 마지막의, 변경될 수 없는
+
+- **fianl이 사용될 수 있는 곳 - 클래스, 메서드, 멤버변수 지역변수**
+- 변수에 사용되면 값을 변경할 수 없는 상수가 되며, 메서드에 사용되면 오버라이딩을 할 수 없게 되고 클래스에 사용되면 자신을 확장하는 자손클래스를 정의하지 못하게 되어, 다른 클래스의 조상이 될 수 없다.
+
+**생성자를 이용한 final멤버 변수의 초기화**
+
+- 클래스 내에 매개변수를 갖는 생성자를 선언하여, 인스턴스를 생성할 때 final이 붙은 멤버변수를 초기화하는데 필요한 값을 생성자의 매개변수로부터 제공받는 것이다.
+- 이 기능을 활용하면 각 인스턴스마다 final이 붙은 멤버변수가 다른 값을 갖도록 하는 것이 가능하다.
+
+## abstract - 추상의, 미완성의
+
+- **abstract가 사용될 수 있는 곳 - 클래스, 메서드**
+- 메서드의 선언부만 작성하고 실제 수행내용은 구현하지 않은 추상 메서드를 선언하는데 사용된다.
+- 클래스에 사용되어 클래스 내에 추상메서드가 존재한다는 것을 쉽게 알 수 있게 한다.
+- 추상 클래스는 아직 완성되지 않은 메서드가 존재하는 미완성 설계도이므로 인스턴스를 생성할 수 없다.
+
+```java
+public abstract class WindowAdapter
+	implements WindowListener, WindowStateListener, WindowFocusListener {
+		public void windowOpend(WindowEvent e) { }
+		public void windowClosing(WindowEvent e) { }
+		public void windowClosed(WindowEvent e) { }
+		public void windowIconified(WindowEvent e) { }
+					...
+} 
+```
+
+java.awt.event.WindowAdapter는 아무런 내용이 없는 메서드들만 정의되어 있다. 이런 클래스는 인스턴스를 생성해봐야 할 수 있는 것이 아무것도 없기 때문에 완성된 클래스지만 인스턴스를 생성하지 못하게 클래스 앞에 제어자 **abstract**를 붙여 놓은 것이다.
+
+이 클래스 자체로는 쓸모 없지만, 다른 클래스가 이 클래스를 상속받아서 일부의 원하는 메서드만 오버라이딩해도 된다는 장점이 있다.
+
+## 접근 제어자(access modifier)
+
+- **접근 제어자가 사용될 수 있는 곳 - 클래스, 멤버변수, 메서드, 생성자**
+    
+    **private** : 같은 클래스 내에서만 접근 가능
+    
+    **default** : 같은 패키지 내에서만 접근 가능
+    
+    **protected** : 같은 패키지 내에서, 그리고 다른 패키지의 자손클래스에서 접근 가능
+    
+    **public** : 접근 제한이 전혀 없음
+    
+    **public > protected > (default) > private**
+    
+- **클래스** : public, (default) 사용 가능
+    
+    **메서드, 멤버변수** : public, protected, (default), private
+    
+    **지역변수** : 없음
+    
+
+**접근 제어자를 이용한 캡슐화**
+
+접근 제어자를 사용하는 이유
+
+1. 클래스나 멤버, 주로 멤버에 접근 제어자를 사용하는 이유는 클래스의 내부에 선언된 데이터를 보호하기 위해서다.
+    
+    **데이터 감추기(data hiding)** : 데이터가 유효한 값을 유지하도록, 또는 비밀 번화와 같은 데이터를 외부에서 함부로 변경하지 못하도록 하기 위해서 외부로부터의 접근을 제한하는 것
+    
+2. 클래스 내에서만 사용되는, 내부 작업을 위해 임시로 사용되는 멤버변수나 부분작업을 처리하기 위한 메서드 등의 멤버들을 클래스 내부에 감추기 위해서다. 
+    
+    외부에서 접근할 필요가 없는 멤버들을 private으로 지정하여 외부에 노출시키지 않음으로써 복잡성을 줄일 수 있다.
+    
+
+```java
+public class Time {
+			private int hour;
+			private int minute;
+			private int second;
+
+			public int getHour() { return hour; }
+			public void setHour(int hour) {
+						if (hour < 0 || hour > 23) return;
+						this.hour = hour;
+			}
+			public int getMinute() { return minute; }
+			public void setMinute(int minute) {
+						if (minute < 0 || minute > 59) return;
+						this.minute = minute;
+			}
+			public int getSecond() { return second; }
+			public void setSecond(int second) {
+						if (second < 0 || second > 59) return;
+						this.second = second;
+			}
+}
+```
+
+만약 상속을 통해 확장될 것이 예상되는 클래스라면 멤버에 접근 제한을 주되 자손 클래스에서 접근하는 것이 가능하도록 하기 위해 private대신 protected를 사용한다.
+
+보통 멤버변수의 값을 읽는 메서드의 이름을 **get멤버변수이름**으로 하고, 멤버변수의 값을 변경하는 메서드의 이름을 **set멤버변수이름**으로 한다. 
+
+**겟터(getter)** : get으로 시작하는 메서드
+
+**셋터(setter)** : set으로 시작하는 메서드
+
+**생성자의 접근 제어자**
+
+생성자에 접근 제어자를 사용함으로써 인스턴스의 생성을 제한할 수 있다.
+
+생성자의 접근 제어자를 private로 지정하면, 외부에서 생성자에 접근할 수 없으므로 인스턴스를 생성할 수 없지만, 클래스 내부에서는 인스턴스를 생성할 수 있다.
+
+```java
+class Singleton {
+			...
+			private static Singleton s = new Singleton();
+			private Singleton() {
+						...
+			}
+
+			// 인스턴스를 생성하지 않고도 호출할 수 있어야 하므로 static이어야 한다.
+			public static Singleton getInstance() {
+						return s;
+			}
+			...
+}
+```
+
+생성자를 통해 직접 인스턴스를 생성하지 못하게 하고 public메서드를 통해 인스턴스에 접근하게 함으로써 사용할 수 있는 인스턴스의 개수를 제한할 수 있다.
+
+자손 클래스의 인스턴스를 생성할 때 조상 클래스의 생성자를 호출해야만 하는데, 생성자의 접근 제어자가 private이면 자손 클래스에서 호출하는 것이 불가능 하기 때문에 생성자가 private인 클래스는 다른 클래스의 조상이 될 수 없다.
+
+그래서 앞에 final을 더 추가해 상속할 수 없는 클래스라는 것을 알리는 것이 좋다.
+
+## 제어자(modifier)의 조합
+
+클래스 - public, (default), final, abstract
+
+메서드 - 모든 접근 제어자, final, abstract, static
+
+멤버변수 - 모든 접근 제어자, final, static
+
+지역변수 - final
+
+**제어자를 조합해서 사용 시 주의해야 할 사항**
+
+1. **메서드에 static과 abstract를 함께 사용할 수 없다.**
+    
+    static메서드는 몸통이 있는 메서드에만 사용 가능하다
+    
+2. **클래스에 abstract와 fianl을 동시에 사용할 수 없다.**
+    
+    클래스에 사용되는 final은 클래스를 확장할 수 없다는 의미이고, abstract는 상속을 통해서 완성되어야 한다는 의미이므로 서로 모순되기 때문이다.
+    
+
+1. **abstract메서드의 접근 제어자가 private일 수 없다.**
+    
+    abstract메서드는 자손 클래스에서 구현해주어야 하는데 접근 제어자가 private이면, 자손 클래스에서 접근할 수 없기 때문이다.
+    
+
+1. **메서드에 private과 final을 같이 사용할 필요는 없다.**
+    
+    접근 제어자가 private인 메서드는 오버라이딩될 수 없기 때문이다. 이 둘 중 하나만 사용해도 의미가 충분하다.
