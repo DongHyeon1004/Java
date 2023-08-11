@@ -101,7 +101,7 @@ t = new Tv();
 ```
 
 ```java
-ex1
+//ex1
 class Tv {
     String color;
     boolean power;
@@ -131,7 +131,7 @@ class TvTest {
     
     인스턴스가 생성되지 않았으므로 아무것도 할 수 없음.
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-1.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled.png)
     
 2. **t = new Tv();**
     
@@ -141,13 +141,13 @@ class TvTest {
     
     멤버변수는 각 자료형에 해당하는 기본값으로 초기화.
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-2.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%201.png)
     
     대입연산자 = 에 의해서 생성된 객체의 주소 값이 참조변수 t에 저장.
     
     참조변수 t를 통해 Tv인스턴스 접근 가능.
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-3.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%202.png)
     
 3. **t.channel = 7 ;**
     
@@ -155,7 +155,7 @@ class TvTest {
     
     인스턴스의 멤버 변수(속성)를 사용하려면 **참조변수.멤버변수**
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-4.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%203.png)
     
 4. **t.channelDown();**
     
@@ -163,14 +163,89 @@ class TvTest {
     
     channel 값 7 → 6
     
-    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-5.png)
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%204.png)
     
 5. **System.out.println(”현재 채널은 “ + t.channel + “ 입니다.”);**
     
     참조변수 t가 참조하고 있는 Tv인스턴스의 멤버변수 channel에 저장된 값 출력.
     
-- **인스턴스는 참조변수를 통해서만 다룰 수 있으며, 참조변수의 타입은 인스턴스의 타입과 일치해야 한다.**
-- 참조변수에는 하나의 값(주소)만이 저장될 수 있으므로 둘 이상의 참조변수가 하나의 인스턴스를 가리키는 것은 가능하지만 **하나의 참조변수가 여러 개의 인스턴스를 가리키는 것은 불가능.**
+
+**인스턴스는 참조변수를 통해서만 다룰 수 있으며, 참조변수의 타입은 인스턴스의 타입과 일치해야 한다.**
+
+```java
+//ex2
+class Tv {
+    String color;
+    boolean power;
+    int channel;
+
+    void power() { power = !power; }
+    void channelUp() { ++channel; }
+    void channelDown() { --channel; }
+}
+
+class TvTest2 {
+    public static void main(String[] args) {
+       Tv t1 = new Tv();
+       Tv t2 = new Tv();
+       System.out.println("t1의 channel값은 " + t1.channel + "입니다.");
+       System.out.println("t2의 channel값은 " + t2.channel + "입니다.");
+
+       t1.channel = 7;
+       System.out.println("t1의 channel값을 7로 변경하였습니다.");
+
+       System.out.println("t1의 channel값은 " + t1.channel + "입니다.");
+       System.out.println("t2의 channel값은 " + t2.channel + "입니다.");
+    }
+}
+
+실행결과
+t1의 channel값은 0입니다.
+t2의 channel값은 0입니다.
+t1의 channel값을 7로 변경하였습니다.
+t1의 channel값은 7입니다.
+t1의 channel값은 0입니다.
+```
+
+같은 클래스로부터 생성됐을지라도 각 인스턴스의 속성(멤버변수)은 서로 다른 값을 유지 할 수 있으며, 메서드의 내용은 모든 인스턴스에 대해 동일하다.
+
+```java
+//ex3
+class Tv {
+    String color;
+    boolean power;
+    int channel;
+
+    void power() { power = !power; }
+    void channelUp() { ++channel; }
+    void channelDown() { --channel; }
+}
+
+class TvTest3 {
+    public static void main(String[] args) {
+        Tv t1 = new Tv();
+        Tv t2 = new Tv();
+        System.out.println("t1의 channel값은 " + t1.channel + "입니다.");
+        System.out.println("t2의 channel값은 " + t2.channel + "입니다.");
+
+        t2 = t1;
+        t1.channel = 7;
+        System.out.println("t1의 channel값을 7로 변경하였습니다.");
+
+        System.out.println("t1의 channel값은 " + t1.channel + "입니다.");
+        System.out.println("t2의 channel값은 " + t2.channel + "입니다.");
+    }
+}
+
+실행결과
+t1의 channel값은 0입니다.
+t2의 channel값은 0입니다.
+t1의 channel값을 7로 변경하였습니다.
+t1의 channel값은 7입니다.
+t1의 channel값은 7입니다.
+```
+
+참조변수에는 하나의 값(주소)만이 저장될 수 있으므로 둘 이상의 참조변수가 하나의 인스턴스를 가리키는 것은 가능하지만 **하나의 참조변수가 여러 개의 인스턴스를 가리키는 것은 불가능.**
 
 ## 객체 배열
 
@@ -198,6 +273,42 @@ Tv tvArr[] = { new Tv(), new Tv(), new Tv() }
 초기화 블럭을 사용해서 한 줄로 표현 가능
 
 다뤄야 할 객체의 수가 많으면 for문을 사용
+
+```java
+//ex4
+class Tvtest4 {
+    public static void main(String[] args) {
+        Tv tvArr[] = new Tv[3];
+
+        for (int i = 0; i < tvArr.length; i++)
+        {
+            tvArr[i] = new Tv();
+            tvArr[i].channel = i + 10;
+        }
+
+        for (int i = 0; i < tvArr.length; i++)
+        {
+            tvArr[i].channelUp();
+            System.out.printf("tvArr[%d].channel = %d%n", i, tvArr[i].channel);
+        }
+    }
+}
+
+class Tv {
+    String color;
+    boolean power;
+    int channel;
+
+    void power() { power = !power; }
+    void channelUp() { ++channel; }
+    void channelDown() { --channel; }
+}
+
+실행결과
+tvArr[0].channel = 11
+tvArr[1].channel = 12
+tvArr[2].channel = 13
+```
 
 ## 클래스의 또 다른 정의
 
@@ -259,6 +370,7 @@ Tv tvArr[] = { new Tv(), new Tv(), new Tv() }
 ## 클래스변수와 인스턴스변수
 
 ```java
+//ex5
 class CardTest {
     public static void main(String[] args) {
         System.out.println("Card.width = " + Card.width);
@@ -423,6 +535,42 @@ class MyMath {
     
 3. 메서드 add의 모든 문장이 실행되거나 return문을 만나면, 호출한 메서드로 되돌아와서 이후 문장 실행.
 
+```java
+//ex6
+class MyMathTest {
+    public static void main(String[] args) {
+        MyMath mm = new MyMath();
+        long result1 = mm.add(5L, 3L);
+        long result2 = mm.subtract(5L, 3L);
+        long result3 = mm.multiply(5L, 3L);
+        double result4 = mm.divide(5L, 3L);
+
+        System.out.println("add(5L, 3L) = " + result1);
+        System.out.println("subtract(5L, 3L) = " + result2);
+        System.out.println("multiply(5L, 3L) = " + result3);
+        System.out.println("divide(5L, 3L) = " + result4);
+    }
+}
+
+class MyMath {
+    long add(long a, long b)
+    {
+        long result = a + b;
+        return result;
+    }
+
+    long subtract(long a, long b) { return a - b; }
+    long multiply(long a, long b) { return a * b; }
+    double divide(double a, double b) { return a / b; }
+}
+
+실행결과
+add(5L, 3L) = 8
+subtract(5L, 3L) = 2
+multiply(5L, 3L) = 15
+divide(5L, 3L) = 1.6666666666666667
+```
+
 ## return문
 
 - return문은 현재 실행 중인 메서드를 종료하고 호출한 메서드로 돌아감.
@@ -468,7 +616,7 @@ int add(int x, int y)
 
 응용프로그램이 실행되면, JVM은 시스템으로부터 프로그램을 수행하는데 필요한 메모리를 할당 받고 이 메모리를 용도에 따라 여러 영역으로 나누어 관리함.
 
-![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/6-6.png)
+![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20I%206bb4ea97a2a54a7db8bcebbf06a08c4c/Untitled%205.png)
 
 1. **메서드 영역(method area)**
     - 프로그램 실행 중 어떤 클래스가 사용되면, 해당 클래스의 클래스파일(*.class)을 읽고 분석하여 클래스에 대한 정보(클래스 데이터)를 저장.
@@ -489,6 +637,56 @@ int add(int x, int y)
         - 호출스택의 제일 위에 있는 메서드가 현재 실행 중인 메서드임.
         - 아래에 있는 메서드가 바로 위의 메서드를 호출한 메서드임.
 
+```java
+//ex7
+class CallStackTest {
+    public static void main(String[] args) {
+        firstMethod();
+    }
+
+    static void firstMethod() {
+        secondMethod();
+    }
+
+    static void secondMethod() {
+        System.out.println("secondMethod()");
+    }
+}
+
+실행결과
+secondMethod()
+```
+
+```java
+//ex8
+class CallStackTest2 {
+    public static void main(String[] args) {
+        System.out.println("main(String[] args)이 시작되었음.");
+        firstMethod();
+        System.out.println("main(String[] args이 끝났음.");
+    }
+
+    static void firstMethod() {
+        System.out.println("firstMethod()이 시작되었음.");
+        secondMethod();
+        System.out.println("firstMethod()이 끝났음.");
+    }
+
+    static void secondMethod() {
+        System.out.println("secondMethod()이 시작되었음.");
+        System.out.println("secondMethod()이 끝났음.");
+    }
+}
+
+실행결과
+main(String[] args)이 시작되었음.
+firstMethod()이 시작되었음.
+secondMethod()이 시작되었음.
+secondMethod()이 끝났음
+firstMethod()이 끝났음.
+main(String[] args이 끝났음.
+```
+
 ## 기본형 매개변수와 참조형 매개변수
 
 매개변수 타입이 기본형일 때는 기본형 값이 복사되지만, 참조형이면 인스턴스의 주소가 복사된다.
@@ -497,6 +695,7 @@ int add(int x, int y)
 - **참조형 매개변수** : 변수의 값을 읽고 변경할 수 있다. (read & write)
 
 ```java
+//ex9
 class Data { int x; }
 
 class PrimitiveParamEx {
@@ -512,9 +711,15 @@ class PrimitiveParamEx {
 
     static void change(int x) {
         x = 1000;
-        System.out.println("change() : x = " + x); // change() : x = 1000;
+        System.out.println("change() : x = " + x); // change() : x = 1000
     }
 }
+
+실행결과
+main() : x = 10
+change() : x = 1000
+After change(d.x)
+main() : x = 10
 ```
 
 1. change메서드가 호출되면서 ‘d.x’가 change메서드의 매개변수 x에 복사됨.
@@ -524,6 +729,7 @@ class PrimitiveParamEx {
 원본이 아닌 복사본이 변경된 것이라 원본에는 영향을 끼치지 못한다. 이렇게 기본형 매개변수는 변수에 저장된 값만 읽을 수만 있을 뿐 변경은 불가능하다.
 
 ```java
+//ex10
 class Data { int x; }
 
 class ReferenceParamEx {
@@ -542,6 +748,12 @@ class ReferenceParamEx {
         System.out.println("change() : x = " + d.x); // change() : x = 1000
     }
 }
+
+실행결과
+main() : x = 10
+change() : x = 1000
+After change(d)
+main() : x = 1000
 ```
 
 change메서드의 매개변수가 잠초형이라서 값이 저장된 주소를 change메서드에게 넘겨주었기 때문에 값을 읽는 것 뿐만 아니라 변경하는 것도 가능하다.
@@ -551,6 +763,7 @@ change메서드의 매개변수가 잠초형이라서 값이 저장된 주소를
 3. change메서드가 종료되면서 매개변수 d는 스택에서 제거.
 
 ```java
+//ex11
 class ReferenceParamEx2 {
     public static void main(String[] args) {
         int x[] = { 10 };
@@ -567,13 +780,99 @@ class ReferenceParamEx2 {
         System.out.println("change() : x = " + x[0]); // change() : x = 1000
     }
 }
+
+실행결과
+main() : x = 10
+change() : x = 1000
+After change(d)
+main() : x = 1000
 ```
 
 변수 x도 int배열 타입의 참조 변수이기 때문에 앞에 예시와 같은 결과를 얻는다.
 
+```java
+//ex12
+class ReferenceParamEx3 {
+    public static void main(String[] args) {
+        int arr[] = new int[] { 3, 2, 1, 6, 5, 4 };
+
+        printArr(arr);
+        sortArr(arr);
+        printArr(arr);
+        System.out.println("sum = " + sumArr(arr));
+    }
+
+    static void printArr(int arr[])
+    {
+        System.out.print("[");
+
+        for (int i : arr)
+            System.out.print(i + ",");
+        System.out.println("]");
+    }
+
+    static int sumArr(int arr[])
+    {
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++)
+            sum += arr[i];
+        return sum;
+    }
+
+    static void sortArr(int arr[])
+    {
+        for (int i = 0; i < arr.length - 1; i++)
+            for (int j = 0; j < arr.length - 1; j++)
+                if (arr[j] > arr[j+1])
+                {
+                    int tmp = arr[j+1];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = tmp;
+                }
+    }
+}
+
+실행결과
+[3, 2, 1, 6, 5, 4]
+[1, 2, 3, 4, 5, 6]
+sum = 21
+```
+
+```java
+//ex13
+class ReturnTest {
+    public static void main(String[] args) {
+        ReturnTest r = new ReturnTest();
+
+        int result = r.add(3,5);
+        System.out.println(result);
+
+        int result2[] = { 0 };
+        r.add(3,5,result2);
+        System.out.println(result2[0]);
+    }
+
+    int add(int a, int b)
+    {
+        return a + b;
+    }
+
+    void add(int a, int b, int result[])
+    {
+        result[0] = a + b;
+    }
+}
+
+실행결과
+8
+8
+```
+
 ## 참조형 반환타입
 
 ```java
+//ex14
 class Data { int x; }
 
 class ReferenceReturnEx {
@@ -594,6 +893,10 @@ class ReferenceReturnEx {
         return tmp;
     }
 }
+
+실행결과
+d.x = 10
+d2.x = 10
 ```
 
 1. copy메서드를 호출하면서 참조변수 d의 갑이 매개변수 d에 복사.
@@ -626,6 +929,7 @@ void method() {
     - 다소 비효율적이라도 알아보기 쉽게 작성하는 것이 논리적 오류가 발생할 확률도 줄어들고 나중에 수정하기도 편리하다.
 
 ```java
+//ex15
 class FactorialTest {
     public static void main(String[] args) {
         int result = factorial(2);
@@ -638,6 +942,9 @@ class FactorialTest {
 				return n * factorial(n - 1);
     }
 }
+
+실행결과
+24
 ```
 
 factorial(2) 호출 시 실행과정
@@ -657,6 +964,103 @@ factorial(2) 호출 시 실행과정
     
 
 매개변수의 값이 올바르지 않으면 어느 시점에 이르러서는 스택의 저장 한계를 넘게 되고, 스택 오버플로우 에러가 발생한다. 매개변수의 유효성 검사가 중요한 이유다.
+
+```java
+//ex16
+class FactorialTest2 {
+    static long factorial(int n)
+    {
+        if (n <= 0 || n > 20) return -1;
+        if (n <= 1) return 1;
+        return n * factorial(n - 1);
+    }
+
+    public static void main(String[] args) {
+        int n = 21;
+        long result = 0;
+
+        for (int i = 1; i <= n; i++)
+        {
+            result = factorial(i);
+
+            if (result == -1)
+            {
+                System.out.printf("유효하지 않은 값입니다 (0 <= n < 20) : %d%n", n);
+                break;
+            }
+
+            System.out.printf("%2d! = %20d%n", i, result);
+        }
+    }
+}
+
+실행결과
+ 1! =                    1
+ 2! =                    2
+ 3! =                    6
+ 4! =                   24
+ 5! =                  120
+ 6! =                  720
+ 7! =                 5040
+ 8! =                40320
+ 9! =               362880
+10! =              3628800
+11! =             39916800
+12! =            479001600
+13! =           6227020800
+14! =          87178291200
+15! =        1307674368000
+16! =       20922789888000
+17! =      355687428096000
+18! =     6402373705728000
+19! =   121645100408832000
+20! =  2432902008176640000
+유효하지 않은 값입니다 (0 <= n < 20) : 21
+```
+
+```java
+//ex17
+class MainTest {
+    public static void main(String[] args) {
+        main(null);
+    }
+}
+
+실행결과
+java.lang.StackOverflowError
+			at.MainTest.main(mainTest.java:3)
+			at.MainTest.main(mainTest.java:3)
+			...
+			at.MainTest.main(mainTest.java:3)
+			at.MainTest.main(mainTest.java:3)
+```
+
+```java
+//ex18
+class PowerTest {
+    public static void main(String[] args) {
+        int x = 2;
+        int n = 5;
+        long result = 0;
+
+        for (int i = 1; i <= n; i++)
+        {
+            result += power(x, i);
+        }
+
+        System.out.println(result);
+    }
+
+    static long power(int x, int n)
+    {
+        if (n == 1) return x;
+        return x * power(x, n - 1);
+    }
+}
+
+실행결과
+62
+```
 
 ## 클래스 메서드(static 메서드)와 인스턴스 메서드
 
@@ -682,12 +1086,58 @@ factorial(2) 호출 시 실행과정
     static을 안 붙인 메서드(인스턴스 메서드)는 실행 시 호출되어야 할 메서드를 찾는 과정이 추가적으로 필요하기 때문에 시간이 더 걸린다.
     
 
+```java
+//ex19
+class MyMath2 {
+    long a, b;
+
+    long add() { return a + b; }
+    long subtract() { return a - b; }
+    long multiply() { return a * b; }
+    double divide() { return a / b; }
+
+    static long add(long a, long b) { return a + b; }
+    static long subtract(long a, long b) { return a - b; }
+    static long multiply(long a, long b) { return a * b; }
+    static double divide(double a, double b) { return a / b; }
+}
+
+class MyMathTest2 {
+    public static void main(String[] args) {
+        System.out.println(MyMath2.add(200L, 100L));
+        System.out.println(MyMath2.subtract(200L, 100L));
+        System.out.println(MyMath2.multiply(200L, 100L));
+        System.out.println(MyMath2.divide(200.0, 100.0));
+
+        MyMath2 mm = new MyMath2();
+        mm.a = 200L;
+        mm.b = 100L;
+
+        System.out.println(mm.add());
+        System.out.println(mm.subtract());
+        System.out.println(mm.multiply());
+        System.out.println(mm.divide());
+    }
+}
+
+실행결과
+300
+100
+20000
+2.0
+300
+100
+20000
+2.0
+```
+
 ## 클래스 멤버와 인스턴스 멤버간의 참조와 호출
 
 - 같은 클래스에 속한 멤버들 간에는 인스턴스를 생성하지 않고도 서로 참조 / 호출이 가능하다.
 - **인스턴스 멤버가 존재하는 시점에 클래스 멤버는 항상 존재하지만, 클래스멤버가 존재하는 시점에 인스턴스 멤버가 존재하지 않을 수도 있기 때문**에, 클래스 멤버가 인스턴스 멤버를 참조 / 호출하는 경우 인스턴스를 생성해야 한다.
 
 ```java
+//ex20
 class MemberCall {
     int iv = 10;
     static int cv = 20;
@@ -825,6 +1275,66 @@ class MemberCall {
 2. 메서드의 이름만 보고도 ‘이름이 같으니, 같은 기능을 하겠구나’라고 쉽게 예측할 수 있다.
 3. 하나의 이름으로 여러 개의 메서드를 정의할 수 있으니, 메서드의 이름을 짓는데 고민을 덜 수 있는 동시에 사용됐어야 할 메서드 이름을 다른 메서드의 이름으로 사용할 수 있다.
 
+```java
+//ex21
+class OverloadingTest {
+    public static void main(String[] args) {
+        MyMath3 mm = new MyMath3();
+        System.out.println("mm.add(3, 3) 결과 : " + mm.add(3,3));
+        System.out.println("mm.add(3L, 3) 결과 : " + mm.add(3L,3));
+        System.out.println("mm.add(3, 3L) 결과 : " + mm.add(3,3L));
+        System.out.println("mm.add(3L, 3L) 결과 : " + mm.add(3L,3L));
+
+        int a[] = { 100, 200, 300 };
+        System.out.println("mm.add(a) 결과 : " + mm.add(a));
+    }
+}
+
+class MyMath3 {
+    int add(int a, int b)
+    {
+        System.out.println("int add(int a,int b) - ");
+        return a + b;
+    }
+
+    long add(int a, long b)
+    {
+        System.out.println("long add(int a, long b) - ");
+        return a + b;
+    }
+
+    long add(long a, int b)
+    {
+        System.out.println("long add(long a, int b) - ");
+        return a + b;
+    }
+
+    long add(long a, long b)
+    {
+        System.out.println("long add(long a, long b) - ");
+        return a + b;
+    }
+
+    int add(int a[])
+    {
+        System.out.println("int add(int a[]) - ");
+        int result = 0;
+        for (int i = 0; i < a.length; i++)
+        {
+            result += a[i];
+        }
+        return result;
+    }
+}
+
+실행결과
+int add(int a,int b) - mm.add(3, 3) 결과 : 6
+long add(long a, int b) - mm.add(3L, 3) 결과 : 6
+long add(int a, long b) - mm.add(3, 3L) 결과 : 6
+long add(long a, long b) - mm.add(3L, 3L) 결과 : 6
+int add(int a[]) - mm.add(a) 결과 : 600
+```
+
 ## 가변인자(varargs)와 오버로딩
 
 **가변인자** : 메서드의 매개변수 개수를 동적으로 지정해 주는 것. **타입… 변수명** 형식으로 선언
@@ -849,6 +1359,42 @@ System.out.println(concatenate(new String[]{"A","B"})); // 배열도 가능
 ```
 
 가변인자는 내부적으로 배열을 이용하는 것이기 때문에 가변인자가 선언된 메서드를 호출할 때마다 배열이 새로 생성된다. 가변인자가 편리하지만, 비효율이 숨어있으므로 꼭 필요한 경우에만 가변인자를 사용하는 것이 좋다.
+
+```java
+//ex22
+class VarArgsEx {
+    public static void main(String[] args) {
+        String strArr[] = { "100", "200", "300" };
+
+        System.out.println(concatenate("", "100", "200", "300"));
+        System.out.println(concatenate("-", strArr));
+        System.out.println(concatenate(",", new String[]{"1", "2", "3"}));
+        System.out.println("[" + concatenate(",", new String[0] + "]"));
+        System.out.println("[" + concatenate(",") + "]");
+    }
+
+    static String concatenate(String delim, String... args)
+    {
+        String result = "";
+
+        for (String str : args)
+        {
+            result += str + delim;
+        }
+
+        return result;
+    }
+}
+
+실행결과
+100200300
+100-200-300-
+1, 2, 3,
+[]
+[]
+```
+
+가변인자를 선언한 메서드를 오버로딩하면, 메서드를 호출했을 때 구별되지 못하는 경우가 발생하기 쉽기 때문에 주의해야 한다. 가능하면 가변인자를 사용한 메서드는 오버로딩하지 않는 것이 좋다.
 
 ---
 
@@ -905,6 +1451,7 @@ Card() { } // 매개변수도 없고 아무런 내용도 없는 간단한 것
 컴파일 할 때, 소스파일의 클래스에 생성자가 하나도 정의되지 않은 경우 컴파일러는 자동적으로 기본 생성자를 추가하여 컴파일한다.
 
 ```java
+//ex23
 class Data1 {
     int value;
 }
@@ -923,6 +1470,14 @@ class ConstructorTest {
         Data2 d2 = new Data2; // 컴파일 에러 발생
     }
 }
+
+실행결과
+ConstructorTest.java:15: cannot resolve symbol
+symbol : constructor Data2 ()
+location : class Data2
+						 Data2 d2 = new Data2();
+^
+1 error
 ```
 
 Data1에는 정의되어 있는 생성자가 하나도 없으므로 컴파일러가 기본 생성자를 추가해주었지만, Data2에는 이미 생성자 Data2(int x)가 정의되어 있으므로 기본 생성자가 추가되지 않았기 때문에 컴파일 에러가 발생한다.
@@ -967,6 +1522,40 @@ c.door = 4;
 
 인스턴스를 생성한 다음에 인스턴스변수의 값을 변경하는 것보다 매개변수를 갖는 생성자를 사용하는 것이 코드를 보다 간결하고 직관적으로 만든다.
 
+```java
+//ex24
+class Car {
+    String color;
+    String gearType;
+    int door;
+
+    Car() {}
+    Car(String c, String g, int d) {
+        color = c;
+        gearType = g;
+        door = d;
+    }
+}
+
+class CarTest {
+    public static void main(String[] args) {
+        Car c1 = new Car();
+        c1.color = "white";
+        c1.gearType = "auto";
+        c1.door = 4;
+
+        Car c2 = new Car("white", "auto", 4);
+
+        System.out.println("c1의 color = " + c1.color + ", gearType = " + c1.gearType + ", door = " + c1.door);
+        System.out.println("c2의 color = " + c2.color + ", gearType = " + c2.gearType + ", door = " + c2.door);
+    }
+}
+
+실행결과
+c1의 color = white, gearType = auto, door = 4
+c2의 color = white, gearType = auto, door = 3
+```
+
 ## 생성자에서 다른 생성자 호출하기 - this(), this
 
 ******this :** 인스턴스 자신을 가리키는 참조변수, 인스턴스의 주소가 저장되어 있다. 모든 인스턴스 메서드에 지역변수로 숨겨진 채 존재한다.
@@ -995,6 +1584,7 @@ Car(String color) {
 생성자 호출은 첫 번째 줄에서 이뤄져야 한다.
 
 ```java
+//ex25
 class Car {
     String color;
     String gearType;
@@ -1024,6 +1614,10 @@ class CarTest2 {
         System.out.println("c2의 color = " + c2.color + ", gearType = " + c2.gearType + ", door = " + c2.door);
     }
 }
+
+실행결과
+c1의 color = white, gearType = auto, door = 4
+c2의 color = blue, gearType = auto, door = 4
 ```
 
 생성자 간의 호출에는 생성자의 이름 대신 this를 사용해야만 하므로 Car 대신 this를 사용했고, 생성자 Car()의 첫째 줄에서 호출했다.
@@ -1058,6 +1652,53 @@ Car(Car c) {
 
 어떤 인스턴스의 상태를 전혀 알지 못해도 똑같은 상태의 인스턴스를 추가로 생성할 수 있다.
 
+```java
+//ex26
+class Car {
+    String color;
+    String gearType;
+    int door;
+
+    Car() {
+        this("white", "auto", 4);
+    }
+
+    Car(Car c) {
+        color = c.color;
+        gearType = c.gearType;
+        door = c.door;
+    }
+
+    Car(String color, String gearType, int door) {
+        this.color = color;
+        this.gearType = gearType;
+        this.door = door;
+    }
+}
+
+class CarTest3 {
+    public static void main(String[] args) {
+        Car c1 = new Car();
+        Car c2 = new Car(c1);
+
+        System.out.println("c1의 color = " + c1.color + ", gearType = " + c1.gearType + ", door = " + c1.door);
+        System.out.println("c2의 color = " + c2.color + ", gearType = " + c2.gearType + ", door = " + c2.door);
+
+        c1.door = 100;
+        System.out.println("c1.dorr = 100; 수행 후");
+        System.out.println("c1의 color = " + c1.color + ", gearType = " + c1.gearType + ", door = " + c1.door);
+        System.out.println("c2의 color = " + c2.color + ", gearType = " + c2.gearType + ", door = " + c2.door);
+    }
+}
+
+실행결과
+c1의 color = white, gearType = auto, door = 4
+c2의 color = white, gearType = auto, door = 4
+c1.dorr = 100; 수행 후
+c1의 color = white, gearType = auto, door = 100
+c2의 color = white, gearType = auto, door = 4
+```
+
 **인스턴스 생성 시 결정해야 할 2가지 사항**
 
 1. 클래스 - 어떤 클래스의 인스턴스를 생성할 것인가?
@@ -1072,7 +1713,7 @@ Car(Car c) {
 **변수의 초기화** : 변수를 선언하고 처음으로 값을 저장하는 것.
 
 - 선언과 동시에 적절한 값으로 초기화 하는 것이 바람직하다.
-- 멤버변수(클래스 변수와 인스턴수 변수)와 배열의 초기화는 선택적이지만, **지역변수의 초기화는 필수적이다.**
+- 멤버변수(클래스 변수와 인스턴수 변수)와 배열의 초기화는 선택적이지만******************************************************************************************************************************************************************************************************************************************************************************************, 지역변수의 초기화는 필수적이다.**
 - 타입이 다른 변수는 함께 선언하거나 초기화 할 수 없다.
     
     ex) int i = 10, long j = 0;
@@ -1140,6 +1781,7 @@ Car(String color, String gearType, int door) {
 코드의 중복을 제거하는 것은 코드의 신뢰성을 높여 주고, 오류의 발생 가능성을 줄여 준다.
 
 ```java
+//ex27
 class BlockTest {
     static {
         System.out.println("static  { } ");
@@ -1161,11 +1803,39 @@ class BlockTest {
         BlockTest bt2 = new BlockTest();
     }
 }
+
+실행결과
+static { }
+BlockTest bt = new BlockTest();
+{ }
+생성자
+BlockTest bt2 = new BlockTest();
+{ }
+생성자
 ```
 
 1. 실행되면서 BlockTest가 메모리에 로딩될 때, 클래스 초기화 블럭이 가장 먼저 수행되어 static { } 이 화면에 출력된다.
 2. main메서드가 수행되어 BlockTest인스턴스가 생성되면서 인스턴스 초기화 블럭이 수행된다.
 3. 생성자가 수행된다.
+
+```java
+//ex28
+class StaticBlockTest {
+    static int arr[] = new int[10];
+
+    static {
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = (int)(Math.random() * 10) + 1;
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < arr.length; i++)
+            System.out.println("arr[" + i + "] : " + arr[i]);
+    }
+}
+
+매 실행마다 실행결과가 다름.
+```
 
 ## 멤버변수의 초기화 시기와 순서
 
@@ -1196,4 +1866,70 @@ class InitTest {
 4. InitTest클래스의 인스턴스가 생성되면서 iv가 메모리(heap)에 존재하게 되고, iv 역시 int형의 기본값인 0이 저장된다.
 5. 명시적 초기화에 의해서 iv에 1이 저장된다.
 6. 인스턴스 초기화 블럭이 수행되어 iv에 2가 저장된다.
-7. 생성자가 수행되어 iv에는 3이 저장된다.
+7. 생성자가 수행되어 iv에는 3이 저장된다. 
+
+```java
+//ex29
+class Product {
+    static int count = 0;
+    int serialNo;
+
+    {
+        ++count;
+        serialNo = count;
+    }
+
+    public Product() {} // 생략 가능
+}
+
+class ProductTest {
+    public static void main(String[] args) {
+        Product p1 = new Product();
+        Product p2 = new Product();
+        Product p3 = new Product();
+
+        System.out.println("p1의 제품번호(serial no)는 " + p1.serialNo);
+        System.out.println("p2의 제품번호(serial no)는 " + p2.serialNo);
+        System.out.println("p3의 제품번호(serial no)는 " + p3.serialNo);
+        System.out.println("생성된 제품의 수는 모두 " + Product.count + "개 입니다.");
+    }
+}
+
+실행결과
+p1의 제품번호(serial no)는 1
+p2의 제품번호(serial no)는 2
+p3의 제품번호(serial no)는 3
+생성된 제품의 수는 모두 3개 입니다.
+```
+
+```java
+//ex30
+class Document {
+    static int count = 0;
+    String name;
+
+    Document() {
+        this("제목없음" + ++count);
+    }
+
+    Document(String name) {
+        this.name = name;
+        System.out.println("문서 " + this.name + "가 생성되었습니다.");
+    }
+}
+
+class DocumentTest {
+    public static void main(String[] args) {
+        Document d1 = new Document();
+        Document d2 = new Document("자바.txt");
+        Document d3 = new Document();
+        Document d4 = new Document();
+    }
+}
+
+실행결과
+문서 제목없음1이 생성되었습니다.
+문서 자바.txt가 생성되었습니다.
+문서 제목없음2가 생성되었습니다.
+문서 제목없음3가 생성되었습니다.
+```
