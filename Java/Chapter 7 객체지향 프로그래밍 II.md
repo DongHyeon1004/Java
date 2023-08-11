@@ -74,6 +74,7 @@ class GrandChild extends Child { }
 - GrandChild클래스는 Child클래스의 모든 멤버, Child클래스가 Parent클래스로부터 상속받은 멤버까지 상속받게 된다. Child클래스는 GrandChild클래스의 조상이고, Parent클래스는 간접 조상이 된다. 그러므로 GrandChild클래스는 Parent클래스와 간접적인 상속관계에 있다고 할 수 있다.
 
 ```java
+//ex1
 class Tv {
     boolean power;
     int channel;
@@ -103,6 +104,10 @@ class CaptionTvTest {
         ctv.displayCaption("Hello, World");
     }
 }
+
+실행결과
+11
+Hello, World
 ```
 
 **자손 클래스의 인스턴스를 생성하면 조상 클래스의 멤버와 자손 클래스의 멤버가 합쳐진 하나의 인스턴스로 생성된다.**
@@ -144,6 +149,81 @@ ex)
 **포함관계** : ‘-은 -을 가지고 있다.(has-a)’
 
 ```java
+//ex2
+class DrawShape {
+    public static void main(String[] args) {
+        Point p[] = { new Point(100, 100),
+                new Point(140, 50),
+                new Point(200, 100)};
+
+        Triangle t = new Triangle(p);
+        Circle c = new Circle(new Point(150,150), 50);
+
+        t.draw();
+        c.draw();
+    }
+}
+
+class Shape {
+    String color = "black";
+    void draw() {
+        System.out.printf("[color = %s]%n", color);
+    }
+}
+
+class Point {
+    int x;
+    int y;
+
+    Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    Point() {
+        this(0,0);
+    }
+
+    String getXY() {
+        return "(" + x + "," + y + ")";
+    }
+}
+
+class Circle extends Shape {
+    Point center;
+    int r;
+
+    Circle() {
+        this(new Point(0,0), 100);
+    }
+    Circle(Point center, int r) {
+        this.center = center;
+        this.r = r;
+    }
+
+    void draw() {
+        System.out.printf("[center = (%d, %d), r = %d, color = %s]%n", center.x, center.y, r, color);
+    }
+}
+
+class Triangle extends Shape {
+    Point p[] = new Point[3];
+
+    Triangle(Point p[]) {
+        this.p = p;
+    }
+
+    void draw() {
+        System.out.printf("[p1 = %s, p2 = %s p3 = %s, color = %s]%n", p[0].getXY(), p[1].getXY(), p[2].getXY(), color);
+    }
+}
+
+실행결과
+[p1(100,100), p2(140,50), p3(200,100), color = black]
+[center = (150, 150), r = 50, color = black]
+```
+
+```java
+//ex3
 class DeckTest {
     public static void main(String[] args) {
         Deck d = new Deck();
@@ -216,6 +296,10 @@ class Card {
         return "kind : " + kinds[this.kind] + ", number : " + numbers.charAt(this.number);
     }
 }
+
+실행결과
+kind : SPADE, number : 1
+kind : HEART, number : 7
 ```
 
 pick(0)을 호출하면, 매개변수 index의 값이 0이 되므로, cardArr[0]에 저장된 Card객체의 주소가 참조변수 c에 저장된다.
@@ -245,6 +329,7 @@ class TVCR extends TV, VCR {  // 에러. 조상은 하나만 허용.
 단일 상속의 경우 하나의 조상 클래스만을 가질 수 있기 때문에 다중 상속에 비해 불편하지만, 클래스 간의 관계가 보다 명확해지고 코드를 더욱 신뢰할 수 있게 만들어준다.
 
 ```java
+//ex4
 class Tv {
     boolean power;
     int channel;
@@ -431,6 +516,7 @@ class Child extends Parent {
 - this와 마찬가지로 super 역시 static메서드에서는 사용할 수 없고 인스턴스메서드에서만 사용할 수 있다.
 
 ```java
+//ex5
 class SuperTest {
     public static void main(String[] args) {
         Child c = new Child();
@@ -450,6 +536,40 @@ class Child extends Parent {
         System.out.println("super.x = " + super.x);  // super.x = 10
     }
 }
+
+실행결과
+x = 10
+this.x = 10
+super.x = 10
+```
+
+이 경우 모두 같은 변수를 의미하므로 모두 같은 값이 출력된다.
+
+```java
+//ex5
+class SuperTest {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.method();
+    }
+}
+
+class Parent {
+    int x = 10;
+}
+
+class Child extends Parent {
+    void method() {
+        System.out.println("x = " + x);
+        System.out.println("this.x = " + this.x);
+        System.out.println("super.x = " + super.x);
+    }
+}
+
+실행결과
+x = 20
+this.x = 20
+super.x = 10
 ```
 
 조상 클래스에 선언된 멤버변수와 같은 이름의 멤버변수를 자손 클래스에서 중복해서 정의하는 것이 가능하며 참조변수 super를 이용해 서로 구분할 수 있다.
@@ -466,6 +586,7 @@ class Child extends Parent {
 - **Object클래스를 제외한 모든 클래스의 생성자 첫 줄에 생성자, this() / super()를 호출해야 한다. 그렇지 않으면 컴파일러가 자동적으로 super(); 를 생성자의 첫 줄에 삽입한다.**
 
 ```java
+//ex7
 class PointTest {
     public static void main(String[] args) {
         Point3D p3 = new Point3D(1,2,3);
@@ -499,6 +620,9 @@ class Point3D extends Point {
         return "x : " + x + ", y : " + y + ", z : " + z;
     }
 }
+
+실행결과
+Point()를 찾을 수 없다는 내용의 컴파일 에러 발생.
 ```
 
 Point3D클래스의 인스턴스를 생성하면, 생성자 Point3D(int x, int y, int z)가 호출되면서 첫 문장인 super();를 수행하게 되고, super()는 Point3D의 조상인 Point클래스의 기본 생성자인 Point()를 뜻하므로 Point()가 호출된다.
@@ -513,6 +637,46 @@ Point 3D(int x, int y, int z) {
 ```
 
 **조상 클래스의 멤버변수는 조상의 생성자에 의해 초기화 되도록 해야 하는 것이다.**
+
+```java
+//ex8
+class PointTest2 {
+    public static void main(String[] args) {
+        Point3D p3 = new Point3D();
+        System.out.println("p3.x = " + p3.x);
+        System.out.println("p3.y = " + p3.y);
+        System.out.println("p3.z = " + p3.z);
+    }
+}
+
+class Point {
+    int x = 10;
+    int y = 20;
+
+    Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+class Point3D extends Point {
+    int z = 30;
+
+    Point3D() {
+        this(100, 200, 300);
+    }
+
+    Point3D(int x, int y, int z) {
+        super(x, y);
+        this.z = z;
+    }
+}
+
+실행결과
+p3.x = 100
+p3.y = 200
+p3.z = 300
+```
 
 ---
 
@@ -548,6 +712,7 @@ package 패키지명;
 - 소스파일에 자신이 속할 패키지를 지정하지 않은 클래스는 자동적으로 이름 없는 패키지(unnamed package)에 속하게 된다.
 
 ```java
+//ex9
 package com.codechobo.book;
 
 class PackageTest {
@@ -593,6 +758,27 @@ import 패키지명.*;
 
 import문에서 클래스의 이름 대신 ***** 을 사용하는 것이 하위 패키지의 클래스까지 포함하는 것은 아니다.
 
+```java
+//ex10
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+class ImportTest {
+    public static void main(String[] args) {
+        Date today = new Date();
+
+        SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat time = new SimpleDateFormat("hh:mm::ss a");
+
+        System.out.println("오늘 날짜는 " + date.format(today));
+        System.out.println("현재 시간은 " + date.format(today));
+    }
+}
+
+실행결과
+현재 날짜와 시간이 출력된다.
+```
+
 import문으로 패키지를 지정하지 않으면 모든 클래스 이름 앞에 패키지명을 반드시 붙여야 하지만, 같은 패키지 내의 클래스들은 import문을 지정하지 않고도 패키지명을 생략할 수 있다.
 
 ```java
@@ -615,6 +801,26 @@ import static java.lang.Math.random; // Math.random()만.
 import static java.lang.System.out; // System.out을 out만으로 참조 가능.
 
 System.out.println(Math.random()); --> out.println(random());
+```
+
+```java
+//ex11
+import static java.lang.System.out;
+import static java.lang.Math.*;
+
+class StaticImportEx1 {
+    public static void main(String[] args) {
+        //System.out.println(Math.random());
+        out.println(random());
+
+        //System.out.println("Math.PI : " + Math.PI);
+        out.println("Math.PI : " + PI);
+    }
+}
+
+실행결과
+0.6372776821515502
+Math.PI : 3.141592653589793
 ```
 
 ---
@@ -647,6 +853,44 @@ System.out.println(Math.random()); --> out.println(random());
 
 - 클래스 내에 매개변수를 갖는 생성자를 선언하여, 인스턴스를 생성할 때 final이 붙은 멤버변수를 초기화하는데 필요한 값을 생성자의 매개변수로부터 제공받는 것이다.
 - 이 기능을 활용하면 각 인스턴스마다 final이 붙은 멤버변수가 다른 값을 갖도록 하는 것이 가능하다.
+
+```java
+//ex12
+class Card {
+    final int NUMBER;
+    final String KIND;
+    static int width = 100;
+    static int height = 200;
+
+    Card(String kind, int num) {
+        KIND = kind;
+        NUMBER = num;
+    }
+
+    Card() {
+        this("HEART", 1);
+    }
+
+    public String toString() {
+        return KIND + " " + NUMBER;
+    }
+}
+
+class FinalCardTest {
+    public static void main(String[] args) {
+        Card c = new Card("HEART", 10);
+        //c.NUMBER = 5; 에러발생
+        System.out.println(c.KIND);
+        System.out.println(c.NUMBER);
+        System.out.println(c);
+    }
+}
+
+실행결과
+HEART
+10
+HEART 10
+```
 
 ## abstract - 추상의, 미완성의
 
@@ -736,6 +980,52 @@ public class Time {
 
 **셋터(setter)** : set으로 시작하는 메서드
 
+```java
+//ex13
+public class TimeTest {
+    public static void main(String[] args) {
+        Time t = new Time(12, 35, 30);
+        System.out.println(t);
+        // t.hour = 13;  에러 발생 제어자가 private
+        t.setHour(t.getHour() + 1);
+        System.out.println(t);
+    }
+}
+
+class Time {
+    private int hour, minute, second;
+
+    Time(int hour, int minute, int second) {
+        setHour(hour);
+        setMinute(minute);
+        setSecond(second);
+    }
+
+    public int getHour() { return hour; }
+    public void setHour(int Hour) {
+        if (hour < 0 || hour > 23) return;
+        this.hour = hour;
+    }
+    public int getMinute() { return minute; }
+    public void setMinute(int minute) {
+        if (minute < 0 || minute > 59) return;
+        this.minute = minute;
+    }
+    public int getSecond() { return second; }
+    public void setSecond(int second) {
+        if (second < 0 || second > 59) return;
+        this.second = second;
+    }
+    public String toString() {
+        return hour + ":" + minute + ":" + second;
+    }
+}
+
+실행결과
+12:35:30
+13:35:30
+```
+
 **생성자의 접근 제어자**
 
 생성자에 접근 제어자를 사용함으로써 인스턴스의 생성을 제한할 수 있다.
@@ -763,6 +1053,31 @@ class Singleton {
 자손 클래스의 인스턴스를 생성할 때 조상 클래스의 생성자를 호출해야만 하는데, 생성자의 접근 제어자가 private이면 자손 클래스에서 호출하는 것이 불가능 하기 때문에 생성자가 private인 클래스는 다른 클래스의 조상이 될 수 없다.
 
 그래서 앞에 final을 더 추가해 상속할 수 없는 클래스라는 것을 알리는 것이 좋다.
+
+```java
+//ex14
+final class Singleton {
+    private static Singleton s = new Singleton();
+
+    private Singleton() {
+        // ...
+    }
+
+    public static Singleton getInstance() {
+        if (s == null)
+            s = new Singleton();
+
+        return s;
+    }
+}
+
+class SingletonTest {
+    public static void main(String[] args) {
+        // Singleton s = new Singleton();  에러 발생 접근 제어자가 private
+        Singleton s = Singleton.getInstance();
+    }
+}
+```
 
 ## 제어자(modifier)의 조합
 
@@ -793,3 +1108,178 @@ class Singleton {
 1. **메서드에 private과 final을 같이 사용할 필요는 없다.**
     
     접근 제어자가 private인 메서드는 오버라이딩될 수 없기 때문이다. 이 둘 중 하나만 사용해도 의미가 충분하다.
+    
+
+---
+
+# 다형성(polymorphism)
+
+## 다형성이란?
+
+**다형성** : 여러 가지 형태를 가질 수 있는 능력
+
+조상 클래스 타입의 참조변수로 자손 클래스의 인스턴스를 참조할 수 있도록 하여 구현했다.
+
+```java
+class Tv {
+			boolean power;
+			int channel;
+
+			void power() { power = !power; }
+			void channelUp() { ++channel; }
+			void channelDown() { --channel; }
+}
+
+class CaptionTv extends Tv {
+			String text;
+			void cpation() { /*내용생략*/ }
+}
+```
+
+클래스 Tv와 CaptionTv는 서로 상속관계에 있다.
+
+```java
+Tv t = new Tv();
+CaptionTv c = new CaptionTv();
+```
+
+지금까지는 생성된 인스턴스를 다루기 위해서, 인스턴스의 타입과 일치하는 타입의 참조변수만을 사용했다.
+
+```java
+Tv t = new CaptionTv();
+```
+
+인스턴스의 타입과 참조변수의 타입이 일치하는 것이 보통이지만, 클래스가 서로 상속관계에 있을 경우, 조상 클래스 타입의 참조변수로 자손 클래스의 인스턴스를 참조하도록 하는 것이 가능하다.
+
+**인스턴스를 같은 타입의 참조변수로 참조하는 것과 조상 타입의 참조변수로 참조하는 것의 차이점**
+
+```java
+CaptionTv c = new CaptionTv();
+Tv t = new CaptionTv();
+```
+
+실제 인스턴스가 CaptionTv타입이라 할지라도, 참조 변수 t로는 CpationTv인스턴스의 모든 멤버를 사용할 수 없다.
+
+Tv타입의 참조변수로는 CaptionTv인스턴스 중에서 Tv클래스의 멤버들(상속 받은 멤버 포함)만 사용할 수 있다. 따라서, 생성된 CaptionTv인스턴스의 멤버 중 Tv클래스에 정의 되지 않은 멤버, text와 caption()은 참조변수 t로 사용이 불가능하다.
+
+**둘 다 같은 타입의 인스턴스지만 참조변수의 타입에 따라 사용할 수 있는 멤버의 개수가 달라진다.**
+
+```java
+CaptionTv c = new Tv(); // 컴파일 에러 발생.
+```
+
+실제 인스턴스인 Tv의 맴버 개수보다 참조변수 c가 사용할 수 있는 멤버 개수가 더 많기 때문에 컴파일 에러가 발생한다.
+
+자손타입의 참조변수로 조상타입의 인스턴스를 참조하는 것은 존재하지 않는 멤버를 사용하고자 할 가능성이 있으므로 허용하지 않는다.
+
+**참조변수가 사용할 수 있는 멤버의 개수는 인스턴스의 멤버 개수보다 같거나 적어야 한다.**
+
+**조상타입의 참조변수로 자손타입의 인스턴스를 참조할 수 있다.**
+
+**반대로 자손타입의 참조변수로 조상타입의 인스턴스를 참조할 수는 없다.**
+
+## 참조변수의 형변환
+
+참조변수의 형변환은 서로 상속관계에 있는 클래스 사이에서만 가능하기 때문에 자손타입의 참조변수를 조상타입의 참조변수로, 조상타입의 참조변수를 자손타입의 참조변수로의 형변환만 가능하다.
+
+**자손타입 → 조상타입(Up-casting) : 형변환 생략 가능**
+
+**조상타입 → 자손타입(Down-casting) : 형변환 생략 불가능**
+
+참조변수간의 형변환 역시 캐스트연산자를 사용하며, 괄호( ) 안에 변환하고자 하는 타입의 이름(클래스명)을 적어주면 된다.
+
+```java
+class Car {
+			String color;
+			int door;
+			void drive() {
+					 System.out.println("drive, Brrrr~");
+			}
+			void stop() {
+					 System.out.println("stop!!");
+			}
+}
+
+class FireEngine extends Car {
+			void water() {
+					 System.out.println("water!!");
+			}
+}
+
+class Ambulance extends Car {
+			void siren() {
+					 System.out.println("siren~~~");
+			}
+}
+```
+
+Car클래스는 FireEngine클래스와 Ambulance클래스의 조상이지만, FireEngine클래스와 Ambulance클래스가 형제관계인건 아니다. 자바에서는 조상과 자식관계만 존재하기 때문에 서로 아무런 관련이 없다.
+
+```java
+FireEngine f;
+Ambulance a;
+a = (Ambulance)f; // 에러. 상속관계가 아닌 클래스간의 형변환 불가
+f = (FireEngine)a; // 에러. 상속관계가 아닌 클래스간의 형변환 불가
+```
+
+FireEngine타입의 참조변수와 Ambulance타입의 참조변수 간에는 아무런 관계가 없기 때문에 형변환이 불가능하다.
+
+```java
+Car car = null;
+FireEngine fe = new FireEngine();
+FireEngine fe2 = null;
+
+car = fe; // car = (Car)fe;에서 형변환 생략. Up-casting 
+fe2 = (FireEngine)car; // 형변환 생략불가. Down-casting
+```
+
+**형변환을 생략할 수 있는 경우와 생략할 수 없는 경우에 대한 이유**
+
+Car타입의 참조변수 c가 있다고 가정하면, 참조변수 c가 참조하고 있는 인스턴스는 Car인스턴스이거나 자손인 FireEngine인스턴스일 것이다.
+
+Car타입의 참조변수 c를 Car타입의 조상인 Object타입의 참조변수로 형변환 하는 것은 참조변수가 다룰 수 있는 멤버의 개수가 실제 인스턴스가 갖고 있는 멤버의 개수보다 적을 것이 분명하므로 문제가 되지 않는다. 그래서 형변환을 생략할 수 있도록 한 것이다.
+
+하지만, Car타입의 참조변수 c를 자손인 FireEngine타입으로 변환하는 것은 참조변수가 다룰 수 있는 멤버의 개수를 늘리는 것이므로, 실제 인스턴스의 멤버 개수보다 참조변수가 사용할 수 있는 멤버의 개수가 더 많아지므로 문제가 발생할 가능성이 있다. 그래서 자손타입으로의 형변환은 생략할 수 없다.
+
+- **형변환은 참조변수의 타입을 변환하는 것이지 인스턴스를 변환하는 것은 아니기 때문에 참조변수의 형변환은 인스턴스에 아무런 영향을 미치지 않는다.**
+- **단지 참조변수의 형변환을 통해서, 참조하고 있는 인스턴스에서 사용할 수 있는 멤버의 개수를 조절하는 것 뿐이다.**
+
+```java
+//ex15
+class CastingTest1 {
+    public static void main(String[] args) {
+        Car car = null;
+        FireEngine fe = new FireEngine();
+        FireEngine fe2 = null;
+
+        fe.water();
+        car = fe;
+        // car.water(); 컴파일 에러.
+        fe2 = (FireEngine)car;
+        fe2.water();
+    }
+}
+
+class Car {
+    String color;
+    int door;
+
+    void drive() {
+        System.out.println("drive, Brrrr~");
+    }
+
+    void stop() {
+        System.out.println("stop!!!");
+    }
+}
+
+class FireEngine extends Car {
+    void water() {
+        System.out.println("water!!!");
+    }
+}
+
+실행결과
+water!!!
+water!!!
+```
