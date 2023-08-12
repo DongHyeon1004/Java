@@ -512,7 +512,7 @@ class Child extends Parent {
 **super** : 자손 클래스에서 조상 클래스로부터 상속 받은 멤버를 참조하는데 사용되는 참조 변수
 
 - 상속 받은 멤버와 자신의 이름이 같을 때 super를 붙여서 구분할 수 있다.
-- 조상 클래스로부터 상속 받은 멤버도 자손 클래스 자신의 멤버이므로 super대신 this를 사용할 수 있지만, 조상 클래스의 멤버와 자손 클래스의 멤버가 중복 정의되어 서로 구별해야하는 경우에만 super를 사용하는 것이 좋다.
+- 조상 클래스로부터 상속 받은 멤버도 자손 클래스 자신의 멤버이므로 super대신 this를 사용할 수 있지만, 조상 클래스의 멤버와 자손 클래스의 멤버가 중복 정의되어 서로 구별해야 하는 경우에만 super를 사용하는 것이 좋다.
 - this와 마찬가지로 super 역시 static메서드에서는 사용할 수 없고 인스턴스메서드에서만 사용할 수 있다.
 
 ```java
@@ -531,9 +531,9 @@ class Parent {
 class Child extends Parent {
     int x = 20;
     void method() {
-        System.out.println("x = " + x);  // x = 10
-        System.out.println("this.x = " + this.x);  // this.x = 20
-        System.out.println("super.x = " + super.x);  // super.x = 10
+        System.out.println("x = " + x);  
+        System.out.println("this.x = " + this.x);  
+        System.out.println("super.x = " + super.x);  
     }
 }
 
@@ -1283,3 +1283,564 @@ class FireEngine extends Car {
 water!!!
 water!!!
 ```
+
+1. **Car car = null;**
+    
+    Car타입의 참조변수 car를 선언하고 null로 초기화한다.
+    
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%204.png)
+    
+2. **FireEngine fe = new FrieEngine();**
+    
+    FireEngine인스턴스를 생성하고 FireEngine타입의 참조변수가 참조하도록 한다.
+    
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%205.png)
+    
+3. **car = fe;**
+    
+    참조변수 fe가 참조하고 있는 인스턴스를 참조변수 car가 참조하도록 한다. fe의 값(참조하고 있는 인스턴스의 주소)이 car에 저장된다. 자손 → 조상이기 때문에 형변환은 생략된다.
+    
+    이제 참조변수 car를 통해서도 FireEngine인스턴스를 사용할 수 있지만, fe와는 달리 car는 Car타입이므로 Car클래스의 멤버가 아닌 water()는 사용할 수 없다.
+    
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%206.png)
+    
+4. **fe2 = (FireEngine)car;**
+    
+    참조변수 car가 참조하고 있는 인스턴스를 참조변수 fe2가 참조하도록 한다. 조상 → 자손이기 때문에 형변환을 생략할 수 없다. fe2에도 FireEngine인스턴스의 주소가 저장된다.
+    
+    이제 참조변수 fe2를 통해서도 FireEngine인스턴스를 사용할 수 있지만, car와는 달리, fe2는 FireEngine타입이므로 FireEngine인스턴스의 모든 멤버를 사용할 수 있다.
+    
+    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%207.png)
+    
+
+```java
+//ex16
+class CastingTest2 {
+	public static void main(String[] args) {
+			Car car = new Car();
+			Car car2 = null;
+			FireEngine fe = null;
+			
+			car.drive();
+			fe = (FireEngine)car; // 컴파일 OK. 실행 시 에러 발생
+			fe.drive;
+			car2 = fe;
+			car2.drive();
+	}
+}
+
+실행결과
+drive, Brrrr~
+java.lang.ClassCastException: Car
+			at CastingTest2.main(CastingTest2.java:8)
+```
+
+컴파일은 성공하지만 fe = (FireEngine)car; 에서 형변환에 오류가 있기 때문에 에러가 발생한다. 캐스트 연산자를 이용해서 조상타입의 참조변수를 자손타입의 참조변수로 형변환한 것이기 때문에 문제가 없어 보이지만, 문제는 참조변수 car가 참조하고 있는 인스턴스가 Car타입의 인스턴스라는 것이다. 조상타입의 인스턴스를 자손타입의 참조변수로 참조하는 것은 혀용되지 않는다.
+
+컴파일 시에는 참조변수간의 타입만 체크하기 때문에 실행 시 생성될 인스턴스의 타입에 대해서는 전혀 알지 못한다.
+
+서로 상속관계에 있는 타입간의 형변환은 양뱡향으로 자유롭게 수행될 수 있으나, **참조변수가 가리키는 인스턴스의 자손타입으로 형변환은 허용되지 않는다.**
+
+**그래서 참조변수가 가리키는 인스턴스의 타입이 무엇인지 확인하는 것이 중요하다.**
+
+## instanceof 연산자
+
+참조변수가 참조하고 있는 인스턴스의 실제 타입을 알아보기 위해 instanceof연산자를 사용한다. 주로 조건문에 사용되며, instanceof의 왼쪽에는 참조변수를 오른쪽에는 타입(클래스명)이 피연산자로 위치한다. 연산의 결과로는 boolean값인 true와 false 중의 하나를 반환한다.
+
+연산 결과가 **true라는 것은 참조변수가 검사한 타입으로 형변환이 가능하다는 것**을 뜻한다.
+
+```java
+//ex17
+class IntanceofTest {
+	public static void main(String[] args) {
+			FireEngine fe = new FireEngine();
+
+			if (fe instanceof FireEngine) 
+					System.out.println("This is a FireEngine instance.");
+
+			if (fe instanceof Car) 
+					System.out.println("This is a Car instance.");
+
+			if (fe instance of Object) 
+					System.out.println("This is an Object instance.");
+
+			System.out.println(fe.getClass().getName());
+	}
+}
+class Car { }
+class FireEngine extends Car { }
+
+실행결과
+This is a FireEngine instance.
+This is a Car instance.
+This is an Object instance.
+FireEngine
+```
+
+생성된 인스턴스는 FireEngine타입이지만 FireEngine클래스는 Object클래스와 Car클래스의 자손 클래스이므로 조상의 멤버들을 상속받았기 때문에, FireEngine인스턴스는 Object인스턴스와 Car인스턴스를 포함하고 있는 셈이기 때문에, Object타입과 Car타입의 instanceof연산에서도 true를 결과로 얻는다.
+
+실제 인스턴스와 같은 타입의 instancof연산 이외에 조상타입의 instanceof연산에도 true를 결과로 얻으며, 형변환을 해도 아무런 문제가 없다는 뜻이다.
+
+**참조변수.getClass().getName()** : 참조변수가 가리키는 인스턴스의 클래스 이름을 문자열로 반환
+
+**어떤 타입에 대한 instanceof연산의 결과가 true라는 것은 검사한 타입으로 형변환이 가능하다는 것**
+
+## 참조변수와 인스턴스의 연결
+
+멤버변수가 조상 클래스와 자손 클래스에 중복으로 정의된 경우, 조상타입의 참조변수를 사용했을 때는 조상 클래스에 선언된 멤버변수가 사용되고, 자손타입의 참조변수를 사용했을 때는 자손 클래스에 선언된 멤버변수가 사용된다.
+
+중복 정의되지 않은 경우, 조상타입의 참조변수를 사용했을 때와 자손타입의 참조변수를 사용했을 때의 사용했을 때의 차이는 없다. 중복되지 않은 경우 하나뿐이므로 선택의 여지가 없기 때문이다.
+
+```java
+//ex18
+class BindingTest {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        Child c = new Child();
+
+        System.out.println("p.x = " + p.x);
+        p.method();
+
+        System.out.println("c.x = " + c.x);
+        c.method();
+    }
+}
+
+class Parent {
+    int x = 100;
+
+    void method() {
+        System.out.println("Parent Method");
+    }
+}
+
+class Child {
+    int x = 200;
+
+    void method() {
+        System.out.println("Child Method");
+    }
+}
+
+실행결과
+p.x = 100
+Child Method
+c.x = 200
+Child Method
+```
+
+메서드인 method()의 경우 참조변수의 타입에 관계없이 항상 실제 인스턴스의 타입인 Child클래스에 정의된 메서드가 호출되지만, 인스턴스변수인 x는 참조변수의 타입에 따라서 달라진다.
+
+```java
+//ex19
+class BindingTest2 {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        Child c = new Child();
+        
+        System.out.println("p.x = " + p.x);
+        p.method();
+        
+        System.out.println("c.x = " + c.x);
+        c.method();
+    }
+}
+
+class Parent {
+    int x = 100;
+    
+    void method() {
+        System.out.println("Parent Method");
+    }
+}
+
+class Child extends Parent { }
+
+실행결과
+p.x = 100
+Parent Method
+c.x = 100
+Parent Method
+```
+
+Child클래스에는 아무런 멤버도 정의되어 있지 않고 단순히 조상으로부터 멤버들을 상속받는다. 그렇기 때문에 참조변수의 타입에 관계없이 조상의 멤버들을 사용하게 된다.
+
+자손 클래스에서 조상 클래스의 멤버를 중복으로 정의하지 않았을 때는 참조변수의 타입에 따른 변화는 없다. 어느 클래스의 멤버가 호출되어야 할지에 대해 선택의 여지가 없기 때문이다.
+
+참조변수의 타입에 따라 결과가 달라지는 경우는 조상 클래스의 멤버변수와 같은 이름의 멤버변수를 자손 클래스에 중복해서 정의한 경우뿐이다.
+
+```java
+//ex20
+class BindingTest3 {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        Child c = new Child();
+
+        System.out.println("p.x = " + p.x);
+        p.method();
+
+        System.out.println("c.x = " + c.x);
+        c.method();
+    }
+}
+
+class Parent {
+    int x = 100;
+
+    void method() {
+        System.out.println("Parent Method");
+    }
+}
+
+class Child extends Parent {
+    int x = 200;
+    
+    void method() {
+        System.out.println("x = " + x);
+        System.out.println("super.x = " + super.x);
+        System.out.println("this.x = " + this.x);
+    }
+}
+
+실행결과
+p.x = 100
+x = 200
+super.x = 100
+this.x = 200
+
+c.x = 200
+x = 200
+super.x = 100
+this.x = 200
+
+```
+
+자손인 Child클래스에서 super.x는 조상 클래스인 Parent에 선언된 인스턴스변수 x를 뜻하며, this.x 또는 x는 Child클래스의 인스턴스변수 x를 뜻한다.
+
+## 매개변수의 다형성
+
+메서드의 매개변수에도 참조변수의 다형적인 특징이 적용된다.
+
+```java
+//ex21
+class Product {
+    int price;
+    int bonusPoint;
+
+    Product(int price) {
+        this.price = price;
+        bonusPoint = (int)(price/10.0);
+    }
+}
+
+class Tv extends Product {
+    Tv() {
+        super(100);
+    }
+    public String toString() { return "Tv"; }
+}
+
+class Computer extends Product {
+    Computer() { super(200); }
+    public String toSrting() { return "Computer"; }
+}
+
+class Buyer {
+    int money = 1000;
+    int bonusPoint = 0;
+
+    void buy(Product p) {
+        if (money < p.price)
+        {
+            System.out.println("잔액이 부족하여 물건을 살 수 없습니다.");
+            return;
+        }
+
+        money -= p.price;
+        bonusPoint += p.bonusPoint;
+        System.out.println(p + "을/를 구입하셨습니다.");
+    }
+}
+
+class PolyArgumentTest {
+    public static void main(String[] args) {
+        Buyer b = new Buyer();
+
+        b.buy(new Tv());
+        b.buy(new Computer());
+
+        System.out.println("현재 남은 돈은 + " + b.money + "만원입니다.");
+        System.out.println("현재 보너스 점수는 " + b.bonusPoint + "점입니다.");
+    }
+}
+
+실행결과
+Tv을/를 구입하셨습니다.
+Computer을/를 구입하셨습니다.
+현재 남은 돈은 700만원입니다.
+현재 보너스 점수는 30점입니다.
+```
+
+void buy(Product p) {
+        money -= p.price;
+        bonusPoint += p.bonusPoint;
+
+}
+
+매개변수가 Product타입의 참조변수라는 것은, 메서드의 매개변수로 Product클래스의 자손타입의 참조변수라면 어느 것이나 매개변수로 받아들일 수 있다는 것이다.
+
+PrintStream클래스에 정의되어있는 print(Object)는 매개변수로 Object타입의 변수가 선언되어 있는데 Object는 모든 클래스의 조상이므로 이 메서드의 매개변수로 어떤 타입의 인스턴스도 가능하므로, 이 하나의 메서드로 모든 타입의 인스턴스를 처리할 수 있는 것이다.
+
+## 여러 종류의 객체를 배열로 다루기
+
+조상타입의 참조변수 배열을 사용하면, 공통의 조상을 가진 서로 다른 종류의 객체를 배열로 묶어서 다룰 수 있다. 
+
+또는 묶어서 다루고 싶은 객체들의 상속 관계를 따져서 가장 가까운 공통 조상 클래스 타입의 참조변수 배열을 생성해서 객체들을 저장하면 된다.
+
+```java
+//ex22
+class Product {
+    int price;
+    int bonusPoint;
+
+    Product(int price) {
+        this.price = price;
+        bonusPoint = (int)(price/10.0);
+    }
+
+		Product() { }
+}
+
+class Tv extends Product {
+    Tv() { super(100); }
+    public String toString() { return "Tv"; }
+}
+
+class Computer extends Product {
+    Computer() { super(200); }
+    public String toString() { return "Computer"; }
+}
+
+class Audio extends Product {
+		Audio() { super(50); }
+		public String toString() { return "Audio"; }
+
+class Buyer {
+    int money = 1000;
+    int bonusPoint = 0;
+		Product item[] = new Product[10];
+		int i = 0;
+
+    void buy(Product p) {
+        if (money < p.price)
+        {
+            System.out.println("잔액이 부족하여 물건을 살 수 없습니다.");
+            return;
+        }
+
+        money -= p.price;
+        bonusPoint += p.bonusPoint;
+				item[i++] = p;
+        System.out.println(p + "을/를 구입하셨습니다.");
+    }
+
+		void summary() {
+				int sum = 0;
+				String itemList = "";
+
+				for (int i = 0; i < item.lenght; i++) 
+				{
+						if (item[i] == null) break;
+						sum += item[i].price;
+						itemList += item[i] + ", ";
+				}
+				System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
+				System.out.println("구입하신 제품은 " + itemList + "입니다.");
+		}
+}
+
+class PolyArgumentTest2 {
+    public static void main(String[] args) {
+        Buyer b = new Buyer();
+
+        b.buy(new Tv());
+        b.buy(new Computer());
+				b.buy(new Audio());
+				b.summary();
+    }
+}
+
+실행결과
+Tv을/를 구입하셨습니다.
+Computer을/를 구입하셨습니다.
+Audio을/를 구입하셨습니다.
+구입하신 물품의 총 금액은 350만원입니다.
+구입하신 제품은 Tv, Computer, Audio, 입니다.
+```
+
+Product배열로 구입한 제품들을 저장할 수 있도록 했지만, 배열의 크기가 정해져 있어 정해진 크기 이상의 제품을 구입할 수 없다. 그렇다고 배열의 크기를 무조건 크게 설정할 수도 없는 일이다.
+
+이런 경우, Vector클래스를 사용하면 된다. Vector클래스는 내부적으로 Object타입의 배열을 가지고 있어서, 이 배열에 객체를 추가하거나 제거할 수 있게 작성되어 있고, 배열을 크기를 알아서 관리해 주기 때문에 저장할 인스턴스의 개수에 신경 쓰지 않아도 된다.
+
+```java
+public class Vector extends AbstractList
+							implements List, Cloneable, java.io.Serializable {
+		protected Object elementData[];
+			...
+}
+```
+
+Vector클래스는 단지 동적으로 크기가 관리되는 객체배열일 뿐이다.
+
+**Vector클래스의 주요 메서드**
+
+- **Vector()**
+    
+    10개의 객체를 저장할 수 있는 Vector인스턴스를 생성한다.
+    
+    10개 이상의 인스턴스가 저장되면, 자동으로 크기가 증가된다.
+    
+- **boolean add(Object o)**
+    
+    Vector에 객체를 추가한다.
+    
+    추가에 성공하면 결과값으로 true, 실패하면 false를 반환한다.
+    
+- **boolean remove(Object o)**
+    
+    Vector에 저장되어 있는 객체를 제거한다.
+    
+    제거에 성공하면 결과값으로 true, 실패하면 false를 반환한다.
+    
+- **boolean isEmpty()**
+    
+    Vector가 비어있는지 검사한다.
+    
+    비어있으면 true, 비어있지 않으면 false를 반환한다.
+    
+- **Object get(int index)**
+    
+    저장된 위치(index)의 객체를 반환한다.
+    
+    반환타입이 Object타입이므로 적절한 타입으로의 형변환이 필요하다.
+    
+- **int size()**
+    
+    Vector에 저장된 객체의 개수를 반환한다.
+    
+
+```java
+//ex23
+import java.util.*;  // Vector클래스를 사용하기 위함.
+
+class Product {
+    int price;
+    int bonusPoint;
+
+    Product(int price) {
+        this.price = price;
+        bonusPoint = (int)(price/10.0);
+    }
+
+		Product() {
+				price = 0;
+				bonusPoint = 0;
+		}
+}
+
+class Tv extends Product {
+    Tv() { super(100); }
+    public String toString() { return "Tv"; }
+}
+
+class Computer extends Product {
+    Computer() { super(200); }
+    public String toString() { return "Computer"; }
+}
+
+class Audio extends Product {
+		Audio() { super(50); }
+		public String toString() { return "Audio"; }
+
+class Buyer {
+    int money = 1000;
+    int bonusPoint = 0;
+		Vector item = new Vector();
+
+    void buy(Product p) {
+        if (money < p.price)
+        {
+            System.out.println("잔액이 부족하여 물건을 살 수 없습니다.");
+            return;
+        }
+
+        money -= p.price;
+        bonusPoint += p.bonusPoint;
+				item.add(p);
+        System.out.println(p + "을/를 구입하셨습니다.");
+    }
+
+		void refund(Product p) {
+				if (item.remove(p)) {
+						money += p.price;
+						bounsPoint -= p.bonusPoint;
+						System.out.println(p + "을/를 반품하셨습니다.");
+				}
+				else
+						System.out.println("구입하신 제품 중 해당 제품이 없습니다.");
+		}
+
+		void summary() {
+				int sum = 0;
+				String itemList = "";
+
+				if (item.isEmpty()) {
+						System.out.println("구입하신 제품이 없습니다.");
+						return;
+				}
+
+				for (int i = 0; i < item.size(); i++) 
+				{
+						Product p = (Product)item.get(i);
+						sum += p.price;
+						itemList += (i == 0) ? "" + p : ", " + p;
+				}
+				System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
+				System.out.println("구입하신 제품은 " + itemList + "입니다.");
+		}
+}
+
+class PolyArgumentTest3 {
+    public static void main(String[] args) {
+        Buyer b = new Buyer();
+				Tv tv = new Tv();
+				Computer com = new Computer();
+				Audio audio = new Audio();
+
+        b.buy(tv);
+				b.buy(com);
+				b.buy(audio);
+				b.summary();
+				System.out.println();
+				b.refund(com);
+				b.summary();
+    }
+}
+
+실행결과
+Tv을/를 구입하셨습니다.
+Computer을/를 구입하셨습니다.
+Audio을/를 구입하셨습니다.
+구입하신 물품의 총 금액은 350만원입니다.
+구입하신 제품은 Tv, Computer, Audio, 입니다.
+
+Computer을/를 반품하셨습니다.
+구입하신 물품의 총금액은 150만원입니다.
+구입하신 제품은 Tv, Audio입니다.
+```
+
+---
+
+# 추상클래스(abstract class)
+
+## 추상클래스란?
