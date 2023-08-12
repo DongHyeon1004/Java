@@ -120,9 +120,9 @@ Hello, World
 
 ```java
 class Circle {                         class Circle {
-    int x;                                 **Point c = new Point();**
-    int y;              **-->**                int r;
-    int r;                           }
+    int x;                                 Point c = new Point();**
+    int y;              -->                int r;
+    int r;                             }
 }
 
 class Point {
