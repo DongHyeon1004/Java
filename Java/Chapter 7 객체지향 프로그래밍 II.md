@@ -950,25 +950,25 @@ java.awt.event.WindowAdapter는 아무런 내용이 없는 메서드들만 정�
 
 ```java
 public class Time {
-			private int hour;
-			private int minute;
-			private int second;
+    private int hour;
+    private int minute;
+    private int second;
 
-			public int getHour() { return hour; }
-			public void setHour(int hour) {
-						if (hour < 0 || hour > 23) return;
-						this.hour = hour;
-			}
-			public int getMinute() { return minute; }
-			public void setMinute(int minute) {
-						if (minute < 0 || minute > 59) return;
-						this.minute = minute;
-			}
-			public int getSecond() { return second; }
-			public void setSecond(int second) {
-						if (second < 0 || second > 59) return;
-						this.second = second;
-			}
+    public int getHour() { return hour; }
+    public void setHour(int hour) {
+        if (hour < 0 || hour > 23) return;
+        this.hour = hour;
+    }
+    public int getMinute() { return minute; }
+    public void setMinute(int minute) {
+        if (minute < 0 || minute > 59) return;
+        this.minute = minute;
+    }
+    public int getSecond() { return second; }
+    public void setSecond(int second) {
+        if (second < 0 || second > 59) return;
+        this.second = second;
+    }
 }
 ```
 
@@ -1034,17 +1034,17 @@ class Time {
 
 ```java
 class Singleton {
-			...
-			private static Singleton s = new Singleton();
-			private Singleton() {
-						...
-			}
+    ...
+    private static Singleton s = new Singleton();
+    private Singleton() {
+        ...
+    }
 
-			// 인스턴스를 생성하지 않고도 호출할 수 있어야 하므로 static이어야 한다.
-			public static Singleton getInstance() {
-						return s;
-			}
-			...
+    // 인스턴스를 생성하지 않고도 호출할 수 있어야 하므로 static이어야 한다.
+    public static Singleton getInstance() {
+        return s;
+    }
+    ...
 }
 ```
 
@@ -1122,17 +1122,17 @@ class SingletonTest {
 
 ```java
 class Tv {
-			boolean power;
-			int channel;
+    boolean power;
+    int channel;
 
-			void power() { power = !power; }
-			void channelUp() { ++channel; }
-			void channelDown() { --channel; }
+    void power() { power = !power; }
+    void channelUp() { ++channel; }
+    void channelDown() { --channel; }
 }
 
 class CaptionTv extends Tv {
-			String text;
-			void cpation() { /*내용생략*/ }
+    String text;
+    void cpation() { /*내용생략*/ }
 }
 ```
 
@@ -1190,26 +1190,26 @@ CaptionTv c = new Tv(); // 컴파일 에러 발생.
 
 ```java
 class Car {
-			String color;
-			int door;
-			void drive() {
-					 System.out.println("drive, Brrrr~");
-			}
-			void stop() {
-					 System.out.println("stop!!");
-			}
+    String color;
+    int door;
+    void drive() {
+        System.out.println("drive, Brrrr~");
+    }
+    void stop() {
+        System.out.println("stop!!");
+    }
 }
 
 class FireEngine extends Car {
-			void water() {
-					 System.out.println("water!!");
-			}
+    void water() {
+        System.out.println("water!!");
+    }
 }
 
 class Ambulance extends Car {
-			void siren() {
-					 System.out.println("siren~~~");
-			}
+    void siren() {
+        System.out.println("siren~~~");
+    }
 }
 ```
 
@@ -1316,17 +1316,17 @@ water!!!
 ```java
 //ex16
 class CastingTest2 {
-	public static void main(String[] args) {
-			Car car = new Car();
-			Car car2 = null;
-			FireEngine fe = null;
+    public static void main(String[] args) {
+        Car car = new Car();
+        Car car2 = null;
+        FireEngine fe = null;
 			
-			car.drive();
-			fe = (FireEngine)car; // 컴파일 OK. 실행 시 에러 발생
-			fe.drive;
-			car2 = fe;
-			car2.drive();
-	}
+        car.drive();
+        fe = (FireEngine)car; // 컴파일 OK. 실행 시 에러 발생
+        fe.drive;
+        car2 = fe;
+        car2.drive();
+    }
 }
 
 실행결과
@@ -1353,19 +1353,19 @@ java.lang.ClassCastException: Car
 //ex17
 class IntanceofTest {
 	public static void main(String[] args) {
-			FireEngine fe = new FireEngine();
+        FireEngine fe = new FireEngine();
 
-			if (fe instanceof FireEngine) 
-					System.out.println("This is a FireEngine instance.");
+        if (fe instanceof FireEngine) 
+            System.out.println("This is a FireEngine instance.");
 
-			if (fe instanceof Car) 
-					System.out.println("This is a Car instance.");
+        if (fe instanceof Car) 
+            System.out.println("This is a Car instance.");
 
-			if (fe instance of Object) 
-					System.out.println("This is an Object instance.");
+        if (fe instance of Object) 
+            System.out.println("This is an Object instance.");
 
-			System.out.println(fe.getClass().getName());
-	}
+        System.out.println(fe.getClass().getName());
+    }
 }
 class Car { }
 class FireEngine extends Car { }
@@ -1622,14 +1622,15 @@ class Computer extends Product {
 }
 
 class Audio extends Product {
-		Audio() { super(50); }
-		public String toString() { return "Audio"; }
+    Audio() { super(50); }
+    public String toString() { return "Audio"; }
+}
 
 class Buyer {
     int money = 1000;
     int bonusPoint = 0;
-		Product item[] = new Product[10];
-		int i = 0;
+    Product item[] = new Product[10];
+    int i = 0;
 
     void buy(Product p) {
         if (money < p.price)
@@ -1644,19 +1645,19 @@ class Buyer {
         System.out.println(p + "을/를 구입하셨습니다.");
     }
 
-		void summary() {
-				int sum = 0;
-				String itemList = "";
+    void summary() {
+        int sum = 0;
+        String itemList = "";
 
-				for (int i = 0; i < item.lenght; i++) 
-				{
-						if (item[i] == null) break;
-						sum += item[i].price;
-						itemList += item[i] + ", ";
-				}
-				System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
-				System.out.println("구입하신 제품은 " + itemList + "입니다.");
-		}
+        for (int i = 0; i < item.lenght; i++) 
+        {
+            if (item[i] == null) break;
+            sum += item[i].price;
+            itemList += item[i] + ", ";
+        }
+        System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
+        System.out.println("구입하신 제품은 " + itemList + "입니다.");
+    }
 }
 
 class PolyArgumentTest2 {
@@ -1665,8 +1666,8 @@ class PolyArgumentTest2 {
 
         b.buy(new Tv());
         b.buy(new Computer());
-				b.buy(new Audio());
-				b.summary();
+        b.buy(new Audio());
+        b.summary();
     }
 }
 
@@ -1742,10 +1743,10 @@ class Product {
         bonusPoint = (int)(price/10.0);
     }
 
-		Product() {
-				price = 0;
-				bonusPoint = 0;
-		}
+    Product() {
+        price = 0;
+        bonusPoint = 0;
+    }
 }
 
 class Tv extends Product {
@@ -1780,50 +1781,50 @@ class Buyer {
         System.out.println(p + "을/를 구입하셨습니다.");
     }
 
-		void refund(Product p) {
-				if (item.remove(p)) {
-						money += p.price;
-						bounsPoint -= p.bonusPoint;
-						System.out.println(p + "을/를 반품하셨습니다.");
-				}
-				else
-						System.out.println("구입하신 제품 중 해당 제품이 없습니다.");
-		}
+    void refund(Product p) {
+         if (item.remove(p)) {
+            money += p.price;
+            bounsPoint -= p.bonusPoint;
+            System.out.println(p + "을/를 반품하셨습니다.");
+        }
+        else
+            System.out.println("구입하신 제품 중 해당 제품이 없습니다.");
+    }
 
-		void summary() {
-				int sum = 0;
-				String itemList = "";
+    void summary() {
+        int sum = 0;
+        String itemList = "";
 
-				if (item.isEmpty()) {
-						System.out.println("구입하신 제품이 없습니다.");
-						return;
-				}
+        if (item.isEmpty()) {
+            System.out.println("구입하신 제품이 없습니다.");
+            return;
+        }
 
-				for (int i = 0; i < item.size(); i++) 
-				{
-						Product p = (Product)item.get(i);
-						sum += p.price;
-						itemList += (i == 0) ? "" + p : ", " + p;
-				}
-				System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
-				System.out.println("구입하신 제품은 " + itemList + "입니다.");
-		}
+        for (int i = 0; i < item.size(); i++) 
+        {
+            Product p = (Product)item.get(i);
+            sum += p.price;
+            itemList += (i == 0) ? "" + p : ", " + p;
+        }
+        System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
+        System.out.println("구입하신 제품은 " + itemList + "입니다.");
+    }
 }
 
 class PolyArgumentTest3 {
     public static void main(String[] args) {
         Buyer b = new Buyer();
-				Tv tv = new Tv();
-				Computer com = new Computer();
-				Audio audio = new Audio();
+        Tv tv = new Tv();
+        Computer com = new Computer();
+        Audio audio = new Audio();
 
         b.buy(tv);
-				b.buy(com);
-				b.buy(audio);
-				b.summary();
-				System.out.println();
-				b.refund(com);
-				b.summary();
+        b.buy(com);
+        b.buy(audio);
+        b.summary();
+        System.out.println();
+        b.refund(com);
+        b.summary();
     }
 }
 
