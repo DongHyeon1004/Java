@@ -41,13 +41,13 @@ class Child extends Parent { }
 
 ```java
 class Parent {
-			int age;
+    int age;
 }
 
 class Child extends Parent {
-			void play() {
-					System.out.println("놀자~");
-			}
+    void play() {
+        System.out.println("놀자~");
+    }
 }
 ```
 
@@ -120,14 +120,14 @@ Hello, World
 
 ```java
 class Circle {                         class Circle {
-			int x;                                 **Point c = new Point();**
-			int y;              **-->**                int r;
-			int r;                           }
+    int x;                                 **Point c = new Point();**
+    int y;              **-->**                int r;
+    int r;                           }
 }
 
 class Point {
-			int x;
-			int y;
+    int x;
+    int y;
 }
 ```
 
@@ -381,12 +381,12 @@ class TVCR extends Tv {
 
 ```java
 class Tv {
-			...
+    ...
 }
 
 //컴파일시 자동적으로 extends Object를 추가한다.
 class Tv **extends Object** {
-			...
+    ...
 }
 ```
 
@@ -408,20 +408,20 @@ toString()이나 equals(Object s) 같은 메서드를 따로 정의하지 않고
 
 ```java
 class Point {
-		int x;
-		int y;
+    int x;
+    int y;
 
-		String getLocation() {
-					return "x : " + x + ", y : " + y;
-		}
+    String getLocation() {
+        return "x : " + x + ", y : " + y;
+    }
 }
 
 class Point3D extends Point {
-		int z;
+    int z;
 		
-		String getLocation() {    // 오버라이딩
-					return "x : " + x + ", y : " + y + ", z : " + z;
-		}
+    String getLocation() {    // 오버라이딩
+        return "x : " + x + ", y : " + y + ", z : " + z;
+    }
 }
 ```
 
@@ -450,15 +450,15 @@ Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이�
     
     ```java
     class Parent {
-    		void parentMethod() throws IOException, SQLException {
-    					...
-    		}
+        void parentMethod() throws IOException, SQLException {
+            ...
+        }
     }
     
     class Child extends Parent {
-    		void parentMethod() throws IOException {
-    					...
-    		}
+        void parentMethod() throws IOException {
+            ...
+        }
     }
     ```
     
@@ -466,15 +466,15 @@ Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이�
     
     ```java
     class Parent {
-    		void parentMethod() throws IOException, SQLException {
-    					...
-    		}
+        void parentMethod() throws IOException, SQLException {
+            ...
+        }
     }
     
     class Child extends Parent {
-    		void parentMethod() throws Exception {
-    					...
-    		}
+        void parentMethod() throws Exception {
+            ...
+        }
     }
     ```
     
@@ -494,16 +494,16 @@ Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이�
 
 ```java
 class Parent {
-		void parentMethod() {}
+    void parentMethod() {}
 }
 
 class Child extends Parent {
-		void parentMethod() {} // 오버라이딩
-		void parentMethod(int i) {} // 오버로딩
+    void parentMethod() {} // 오버라이딩
+    void parentMethod(int i) {} // 오버로딩
 		
-		void childMethod() {}
-		void childMethod(int i) {} // 오버로딩
-		void childMethod() {} // 오류.
+    void childMethod() {}
+    void childMethod(int i) {} // 오버로딩
+    void childMethod() {} // 오류.
 }
 ```
 
