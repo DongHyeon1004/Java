@@ -41,13 +41,13 @@ class Child extends Parent { }
 
 ```java
 class Parent {
-    int age;
+			int age;
 }
 
 class Child extends Parent {
-    void play() {
-        System.out.println("놀자~");
-    }
+			void play() {
+					System.out.println("놀자~");
+			}
 }
 ```
 
@@ -120,14 +120,14 @@ Hello, World
 
 ```java
 class Circle {                         class Circle {
-    int x;                                 Point c = new Point();**
-    int y;              -->                int r;
-    int r;                             }
+			int x;                                 **Point c = new Point();**
+			int y;              **-->**                int r;
+			int r;                           }
 }
 
 class Point {
-    int x;
-    int y;
+			int x;
+			int y;
 }
 ```
 
@@ -381,12 +381,12 @@ class TVCR extends Tv {
 
 ```java
 class Tv {
-    ...
+			...
 }
 
 //컴파일시 자동적으로 extends Object를 추가한다.
 class Tv **extends Object** {
-    ...
+			...
 }
 ```
 
@@ -408,20 +408,20 @@ toString()이나 equals(Object s) 같은 메서드를 따로 정의하지 않고
 
 ```java
 class Point {
-    int x;
-    int y;
+		int x;
+		int y;
 
-    String getLocation() {
-        return "x : " + x + ", y : " + y;
-    }
+		String getLocation() {
+					return "x : " + x + ", y : " + y;
+		}
 }
 
 class Point3D extends Point {
-    int z;
+		int z;
 		
-    String getLocation() {    // 오버라이딩
-        return "x : " + x + ", y : " + y + ", z : " + z;
-    }
+		String getLocation() {    // 오버라이딩
+					return "x : " + x + ", y : " + y + ", z : " + z;
+		}
 }
 ```
 
@@ -450,15 +450,15 @@ Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이�
     
     ```java
     class Parent {
-        void parentMethod() throws IOException, SQLException {
-            ...
-        }
+    		void parentMethod() throws IOException, SQLException {
+    					...
+    		}
     }
     
     class Child extends Parent {
-        void parentMethod() throws IOException {
-            ...
-        }
+    		void parentMethod() throws IOException {
+    					...
+    		}
     }
     ```
     
@@ -466,15 +466,15 @@ Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이�
     
     ```java
     class Parent {
-        void parentMethod() throws IOException, SQLException {
-            ...
-        }
+    		void parentMethod() throws IOException, SQLException {
+    					...
+    		}
     }
     
     class Child extends Parent {
-        void parentMethod() throws Exception {
-            ...
-        }
+    		void parentMethod() throws Exception {
+    					...
+    		}
     }
     ```
     
@@ -494,16 +494,16 @@ Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이�
 
 ```java
 class Parent {
-    void parentMethod() {}
+		void parentMethod() {}
 }
 
 class Child extends Parent {
-    void parentMethod() {} // 오버라이딩
-    void parentMethod(int i) {} // 오버로딩
+		void parentMethod() {} // 오버라이딩
+		void parentMethod(int i) {} // 오버로딩
 		
-    void childMethod() {}
-    void childMethod(int i) {} // 오버로딩
-    void childMethod() {} // 오류.
+		void childMethod() {}
+		void childMethod(int i) {} // 오버로딩
+		void childMethod() {} // 오류.
 }
 ```
 
@@ -950,25 +950,25 @@ java.awt.event.WindowAdapter는 아무런 내용이 없는 메서드들만 정�
 
 ```java
 public class Time {
-    private int hour;
-    private int minute;
-    private int second;
+			private int hour;
+			private int minute;
+			private int second;
 
-    public int getHour() { return hour; }
-    public void setHour(int hour) {
-        if (hour < 0 || hour > 23) return;
-        this.hour = hour;
-    }
-    public int getMinute() { return minute; }
-    public void setMinute(int minute) {
-        if (minute < 0 || minute > 59) return;
-        this.minute = minute;
-    }
-    public int getSecond() { return second; }
-    public void setSecond(int second) {
-        if (second < 0 || second > 59) return;
-        this.second = second;
-    }
+			public int getHour() { return hour; }
+			public void setHour(int hour) {
+						if (hour < 0 || hour > 23) return;
+						this.hour = hour;
+			}
+			public int getMinute() { return minute; }
+			public void setMinute(int minute) {
+						if (minute < 0 || minute > 59) return;
+						this.minute = minute;
+			}
+			public int getSecond() { return second; }
+			public void setSecond(int second) {
+						if (second < 0 || second > 59) return;
+						this.second = second;
+			}
 }
 ```
 
@@ -1034,17 +1034,17 @@ class Time {
 
 ```java
 class Singleton {
-    ...
-    private static Singleton s = new Singleton();
-    private Singleton() {
-        ...
-    }
+			...
+			private static Singleton s = new Singleton();
+			private Singleton() {
+						...
+			}
 
-    // 인스턴스를 생성하지 않고도 호출할 수 있어야 하므로 static이어야 한다.
-    public static Singleton getInstance() {
-        return s;
-    }
-    ...
+			// 인스턴스를 생성하지 않고도 호출할 수 있어야 하므로 static이어야 한다.
+			public static Singleton getInstance() {
+						return s;
+			}
+			...
 }
 ```
 
@@ -1122,17 +1122,17 @@ class SingletonTest {
 
 ```java
 class Tv {
-    boolean power;
-    int channel;
+			boolean power;
+			int channel;
 
-    void power() { power = !power; }
-    void channelUp() { ++channel; }
-    void channelDown() { --channel; }
+			void power() { power = !power; }
+			void channelUp() { ++channel; }
+			void channelDown() { --channel; }
 }
 
 class CaptionTv extends Tv {
-    String text;
-    void cpation() { /*내용생략*/ }
+			String text;
+			void cpation() { /*내용생략*/ }
 }
 ```
 
@@ -1190,26 +1190,26 @@ CaptionTv c = new Tv(); // 컴파일 에러 발생.
 
 ```java
 class Car {
-    String color;
-    int door;
-    void drive() {
-        System.out.println("drive, Brrrr~");
-    }
-    void stop() {
-        System.out.println("stop!!");
-    }
+			String color;
+			int door;
+			void drive() {
+					 System.out.println("drive, Brrrr~");
+			}
+			void stop() {
+					 System.out.println("stop!!");
+			}
 }
 
 class FireEngine extends Car {
-    void water() {
-        System.out.println("water!!");
-    }
+			void water() {
+					 System.out.println("water!!");
+			}
 }
 
 class Ambulance extends Car {
-    void siren() {
-        System.out.println("siren~~~");
-    }
+			void siren() {
+					 System.out.println("siren~~~");
+			}
 }
 ```
 
@@ -1316,17 +1316,17 @@ water!!!
 ```java
 //ex16
 class CastingTest2 {
-    public static void main(String[] args) {
-        Car car = new Car();
-        Car car2 = null;
-        FireEngine fe = null;
+	public static void main(String[] args) {
+			Car car = new Car();
+			Car car2 = null;
+			FireEngine fe = null;
 			
-        car.drive();
-        fe = (FireEngine)car; // 컴파일 OK. 실행 시 에러 발생
-        fe.drive;
-        car2 = fe;
-        car2.drive();
-    }
+			car.drive();
+			fe = (FireEngine)car; // 컴파일 OK. 실행 시 에러 발생
+			fe.drive;
+			car2 = fe;
+			car2.drive();
+	}
 }
 
 실행결과
@@ -1353,19 +1353,19 @@ java.lang.ClassCastException: Car
 //ex17
 class IntanceofTest {
 	public static void main(String[] args) {
-        FireEngine fe = new FireEngine();
+			FireEngine fe = new FireEngine();
 
-        if (fe instanceof FireEngine) 
-            System.out.println("This is a FireEngine instance.");
+			if (fe instanceof FireEngine) 
+					System.out.println("This is a FireEngine instance.");
 
-        if (fe instanceof Car) 
-            System.out.println("This is a Car instance.");
+			if (fe instanceof Car) 
+					System.out.println("This is a Car instance.");
 
-        if (fe instance of Object) 
-            System.out.println("This is an Object instance.");
+			if (fe instance of Object) 
+					System.out.println("This is an Object instance.");
 
-        System.out.println(fe.getClass().getName());
-    }
+			System.out.println(fe.getClass().getName());
+	}
 }
 class Car { }
 class FireEngine extends Car { }
@@ -1622,15 +1622,14 @@ class Computer extends Product {
 }
 
 class Audio extends Product {
-    Audio() { super(50); }
-    public String toString() { return "Audio"; }
-}
+		Audio() { super(50); }
+		public String toString() { return "Audio"; }
 
 class Buyer {
     int money = 1000;
     int bonusPoint = 0;
-    Product item[] = new Product[10];
-    int i = 0;
+		Product item[] = new Product[10];
+		int i = 0;
 
     void buy(Product p) {
         if (money < p.price)
@@ -1645,19 +1644,19 @@ class Buyer {
         System.out.println(p + "을/를 구입하셨습니다.");
     }
 
-    void summary() {
-        int sum = 0;
-        String itemList = "";
+		void summary() {
+				int sum = 0;
+				String itemList = "";
 
-        for (int i = 0; i < item.lenght; i++) 
-        {
-            if (item[i] == null) break;
-            sum += item[i].price;
-            itemList += item[i] + ", ";
-        }
-        System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
-        System.out.println("구입하신 제품은 " + itemList + "입니다.");
-    }
+				for (int i = 0; i < item.lenght; i++) 
+				{
+						if (item[i] == null) break;
+						sum += item[i].price;
+						itemList += item[i] + ", ";
+				}
+				System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
+				System.out.println("구입하신 제품은 " + itemList + "입니다.");
+		}
 }
 
 class PolyArgumentTest2 {
@@ -1666,8 +1665,8 @@ class PolyArgumentTest2 {
 
         b.buy(new Tv());
         b.buy(new Computer());
-        b.buy(new Audio());
-        b.summary();
+				b.buy(new Audio());
+				b.summary();
     }
 }
 
@@ -1743,10 +1742,10 @@ class Product {
         bonusPoint = (int)(price/10.0);
     }
 
-    Product() {
-        price = 0;
-        bonusPoint = 0;
-    }
+		Product() {
+				price = 0;
+				bonusPoint = 0;
+		}
 }
 
 class Tv extends Product {
@@ -1781,50 +1780,50 @@ class Buyer {
         System.out.println(p + "을/를 구입하셨습니다.");
     }
 
-    void refund(Product p) {
-         if (item.remove(p)) {
-            money += p.price;
-            bounsPoint -= p.bonusPoint;
-            System.out.println(p + "을/를 반품하셨습니다.");
-        }
-        else
-            System.out.println("구입하신 제품 중 해당 제품이 없습니다.");
-    }
+		void refund(Product p) {
+				if (item.remove(p)) {
+						money += p.price;
+						bounsPoint -= p.bonusPoint;
+						System.out.println(p + "을/를 반품하셨습니다.");
+				}
+				else
+						System.out.println("구입하신 제품 중 해당 제품이 없습니다.");
+		}
 
-    void summary() {
-        int sum = 0;
-        String itemList = "";
+		void summary() {
+				int sum = 0;
+				String itemList = "";
 
-        if (item.isEmpty()) {
-            System.out.println("구입하신 제품이 없습니다.");
-            return;
-        }
+				if (item.isEmpty()) {
+						System.out.println("구입하신 제품이 없습니다.");
+						return;
+				}
 
-        for (int i = 0; i < item.size(); i++) 
-        {
-            Product p = (Product)item.get(i);
-            sum += p.price;
-            itemList += (i == 0) ? "" + p : ", " + p;
-        }
-        System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
-        System.out.println("구입하신 제품은 " + itemList + "입니다.");
-    }
+				for (int i = 0; i < item.size(); i++) 
+				{
+						Product p = (Product)item.get(i);
+						sum += p.price;
+						itemList += (i == 0) ? "" + p : ", " + p;
+				}
+				System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
+				System.out.println("구입하신 제품은 " + itemList + "입니다.");
+		}
 }
 
 class PolyArgumentTest3 {
     public static void main(String[] args) {
         Buyer b = new Buyer();
-        Tv tv = new Tv();
-        Computer com = new Computer();
-        Audio audio = new Audio();
+				Tv tv = new Tv();
+				Computer com = new Computer();
+				Audio audio = new Audio();
 
         b.buy(tv);
-        b.buy(com);
-        b.buy(audio);
-        b.summary();
-        System.out.println();
-        b.refund(com);
-        b.summary();
+				b.buy(com);
+				b.buy(audio);
+				b.summary();
+				System.out.println();
+				b.refund(com);
+				b.summary();
     }
 }
 
@@ -1845,3 +1844,364 @@ Computer을/를 반품하셨습니다.
 # 추상클래스(abstract class)
 
 ## 추상클래스란?
+
+추상클래스는 미완성 설계도다.
+
+클래스가 미완성이라는 것은 멤버의 개수에 관계된 것이 아니라, 단지 미완성 메서드(추상메서드)를 포함하고 있다는 의미다.
+
+추상클래스로는 인스턴스를 생성할 수 없고, 상속을 통해서 자손클래스에 의해서만 완성될 수 있다.
+
+추상클래스 자체로는 클래스로서의 역할을 다 못하지만, 새로운 클래스를 작성하는데 있어서 바탕이 되는 조상클래스로서 중요한 의미를 갖는다.
+
+```java
+abstract class 클래스이름 {
+    ...
+}
+```
+
+추상클래스는 키워드 abstract만 붙이면 된다. 이 클래스를 사용할 때, 클래스 선언부의 abstract를 보고 이 클래스에는 추상메서드가 있으니 상속을 통해서 구현해주어야 한다는 것을 쉽게 알 수 있다.
+
+추상클래스에도 생성자가 있으며, 멤버변수와 메서드도 가질 수 있다.
+
+## 추상메서드(abstract method)
+
+**추상메서드** : 선언부만 작성하고 구현부는 작성하지 않은 채로 남겨 둔 것. 설계만 해 놓고 실제 수행될 내용을 작성하지 않은 미완성 메서드.
+
+메서드의 내용이 상속받는 클래스에 따라 달라질 수 있기 때문에 조상 클래스에서는 선언부만을 작성하고, 주석을 덧붙여 어떤 기능을 수행할 목적으로 작성됐는지 알려 주고, 실제 내용은 상속받는 클래스에서 구현하도록 비워 두는 것이다.
+
+```java
+/* 주석을 통해 어떤 기능을 수행할 목적으로 작성하였는지 설명한다. */
+abstract 리턴타입 메서드이름();
+```
+
+추상메서드도 키워드 abstract를 앞에 붙여 주고, 구현부가 없으므로 괄호{ }대신 문장의 끝을 알리는 ; 을 적는다.
+
+```java
+abstract class Player {
+    abstract void play(int pos); // 추상메서드
+    abstract void stop(); // 추상메서드
+}
+
+class AudioPlayer extends Player {
+    void play(int pos) { /* 내용 생략 */ } // 추상메서드 구현
+    void stop() { /* 내용 생략 */ } // 추상메서드 구현
+}
+
+abstract calss AbstractPlayer extends Player {
+    void play(int pos) { /* 내용 생략 */ } // 추상메서드 구현
+}
+```
+
+추상 클래스로부터 상속 받는 자손 클래스는 오버라이딩을 통해 조상인 추상 클래스의 추상 메서드를 모두 구현해주어야 한다. 만일 조상으로부터 상속 받은 추상메서드 중 하나라도 구현하지 않는다면, 자손 클래스 역시 추상클래스로 지정해 주어야 한다.
+
+메서드를 사용하는 쪽에서는 메서드가 실제로 어떻게 구현됐는지 몰라도 메서드의 선언부만 알고 있으면 되므로 내용이 없을 지라도 추상메서드를 사용하는 코드를 작성하는 것이 가능하며, 실제로는 자손 클래스에 구현된 완성된 메서드가 호출되도록 할 수 있다.
+
+## 추상클래스의 작성
+
+여러 클래스에 공통적으로 사용될 수 있는 클래스를 바로 작성하기도 하고, 기존의 클래스의 공통적인 부분을 뽑아서 추상클래스로 만들어 상속하도록 하는 경우도 있다.
+
+**추상** : 낱낱의 구체적 표상이나 개념에서 공통된 성질을 뽑아 이를 일반적인 개념으로 파악하는 정신용
+
+**추상화** : 클래스간의 공통점을 찾아내서 공통의 조상을 만드는 작업
+
+**구체화** : 상속을 통해 클래스를 구현, 확장하는 작업
+
+```java
+abstract class Player {
+    boolean pause;
+    int currentPos;
+
+    Player() {
+        pause = false;
+        currentPos = 0;
+    }
+  
+    abstract void play(int pos) {
+    abstract void stop();
+ 
+    void play() {
+        play(currentPos);
+    }
+
+    void pause() {
+        if (pause) {
+            pause = false;
+            play(currentPos);
+        } else {
+            pause = true;
+            stop();
+        }
+    }
+}
+
+class CDPlayer extends Player {
+    void play(int currentPos) {
+        /* 조상의 추상메서드를 구현. 내용 생략 */
+    }
+    void stop() {
+        /* 조상의 추상메서드를 구현. 내용 생략 */
+    }
+
+    int currentTrack;
+  
+    void nextTrack() {
+        currentTrack++;
+            ...
+    }
+
+    void preTrack() {
+        if (surrentTrack > 1) {
+            currnetTrack--;
+        }
+            ...
+    }
+}
+```
+
+Player클래스의 play(int pos)와 stop()을 추상메서드로 하는 대신, 아무 내용도 없는 메서드로 작성할 수도 있다. 아무런 내용 없이 단지 괄호{ }만 있어도 일반 메서드로 간주되기 때문이다.
+
+어차피 자손 클래스에서 오버라이딩하여 자신의 클래스에 맞게 구현할 테니 추상메서드로 선언하는 것과 내용없는 빈 몸통만 만들어 놓는 것은 별 차이가 없어 보이지만, 추상메서드로 선언하는 이유는 자손 클래스에서 추상메서드를 반드시 구현하도록 강요하기 위해서다.
+
+---
+
+# 인터페이스(interface)
+
+## 인터페이스란?
+
+**인터페이스** : 일종의 추상클래스. 밑그림만 그려져 있는 기본 설계도.
+
+추상클래스처럼 추상메서드를 갖지만 추상클래스보다 추상화 정도가 높아서 추상클래스와 달리 몸통을 갖춘 일반 메서드 또는 멤버변수를 구성원으로 가질 수 없다.
+
+오직 추상메서드와 상수만을 멤버로 가질 수 있다.
+
+그 자체만으로 사용되기 보다는 다른 클래스를 작성하는데 도움 줄 목적으로 작성된다.
+
+## 인터페이스의 작성
+
+```java
+// 인터페이스 작성법
+interface 인터페이스이름 {
+    public static final 타입 상수이름 = 값;
+    public abstract 메서드이름(매개변수목록);
+}
+```
+
+인터페이스를 작성하는 것은 키워드로 class대신 interface를 사용한다는 것만 다르고 나머지는  클래스를 작성하는 것과 같다.
+
+클래스와 같이 접근 제어자는 public / defalut를 사용할 수 있다.
+
+**인터페이스 멤버들의 제약사항**
+
+- 모든 멤버변수는 public static final이어야 하며, 이를 생략할 수 있다.
+- 모든 메서드는 public abstract이어야 하며, 이를 생략할 수 있다.
+    
+    단, static메서드와 디폴드 메서드는 예외(JDK1.8부터)
+    
+
+```java
+interface PlayingCard {
+    public static final int SPADE = 4;
+    final int DIAMOND = 3; // public static final int DIAMOND = 3;
+    static int HEART = 2; // public static final int HEART = 2;
+    int CLOVER = 1; // public static final int CLOVER = 1;
+
+    public abstract String getCardNumber();
+    String getCardKind(); // public abstract String getCardKind();
+}
+```
+
+인터페이스에 정의된 모든 멤버에 예외없이 적용되는 사항이기 때문에 제어자를 생략할 수 있고, 편의상 생략하는 경우가 많다. 생략된 제어자는 컴파일 시에 컴파일러가 자동적으로 추가해준다.
+
+## 인터페이스의 상속
+
+인터페이스는 인터페이스로부터만 상속 받을 수 있으며, 클래스와는 달리 다중상속이 가능하다.
+
+```java
+interface Movable {
+    /* 지정된 위치(x, y)로 이동하는 기능의 메서드 */
+    void move(int x, int y);
+}
+
+interface Attackable {
+    /* 지정된 대상(u)를 공격하는 기능의 메서드 */
+    void attack(Unit u);
+}
+
+interface Fightable extends Movable, Attackable { }
+```
+
+자손 인터페이스(Fightable)은 조상 인터페이스(Movable, Attackable)에 정의된 멤버를 모두 상속받으므로, Fightable자체에는 정의된 멤버가 하나도 없지만 조상 인터페이스로부터 상속 받은 두 개의 추상메서드 move(int x, int y)와 attack(Unit u)을 멤버로 갖게 된다.
+
+## 인터페이스의 구현
+
+인터페이스도 추상클래스처럼 그 자체로는 인스턴스를 생성할 수 없으며, 자신에 정의된 추상메서드의 몸통을 만들어주는 클래스를 작성해야 하는데, 방법은 추상클래스가 자신을 상속 받는 클래스를 정의하는 것과 다르지 않다. 다른 점은 인터페이스는 구현하다는 의미의 키워드 **implements**를 사용할 뿐이다.
+
+```java
+class 클래스이름 implements 인터페이스이름 {
+    // 인터페이스에 정의된 추상메서드를 구현해야 한다.
+}
+
+class Fighter implements Fightable {
+    public void move(int x, int y) { /* 내용 생략 */ }
+    public void attack(Unit u) { /* 내용 생략 */ }
+}
+```
+
+```java
+abstract clss Fighter implements Fightable {
+    public void move(int x, int y) { /* 내용 생략 */ }
+}
+```
+
+만약 구현하는 인터페이스의 메서드 중 일부만 구현한다면, abstract를 붙여서 추상클래스로 선언해야 한다.
+
+```java
+class Fighter extends Unit implements Fightable {
+    public void move(int x, int y) { /* 내용 생략 */ }
+    public void attack(Unit u) { /* 내용 생략 */ }
+}
+```
+
+상속과 구현을 동시에 할 수 있다.
+
+```java
+//ex24
+class FighterTest {
+    private static void main(String[] args) {
+        Fighter f = new Fighter;
+        
+        if (f instanceof Unit) 
+            System.out.println("f는 Unit클래스의 자손입니다.");
+        
+        if (f instanceof Fightable)
+            System.out.println("f는 Fightable인터페이스를 구현했습니다.");
+        
+        if (f instanceof Movable)
+            System.out.println("f는 Movable인터페이스를 구현했습니다.");
+        
+        if (f instanceof Attackable)
+            System.out.println("f는 Attackable인터페이스를 구현했습니다.");
+        
+        if (f instanceof Object)
+            System.out.println("f는 Object클래스의 자손입니다.");
+    }
+}
+
+class Fighter extends Unit implements Fightable {
+    public void move(int x, int y) { /* 내용 생략 */ }
+    public void attack(Unit u) { /* 내용 생략 */ }
+}
+
+class Unit {
+    int currentHp;
+    int x;
+    int y;
+}
+
+interface Fightable extends Movable, Attackable { }
+interface Movable { void move(int x, int y); }
+interface Attackable { void attack(Unit u); }
+
+실행결과
+f는 Unit클래스의 자손입니다.
+f는 Fightable인터페이스를 구현했습니다.
+f는 Movable인터페이스를 구현했습니다.
+f는 Attackable인터페이스를 구현했습니다.
+f는 Object클래스의 자손입니다.
+```
+
+Fighter클래스는 Unit클래스로부터 상속 받고 Fightable인터페이스만을 구현했지만, Unit클래스는 Object클래스의 자손이고, Fightable인터페이스는 Attackable과 Movable인터페이스의 자손이므로 Fighter클래스는 이 모든 클래스와 인터페이스의 자손이 되는 셈이다.
+
+Movable인터페이스에 void move(int x, int y)와 같이 정의되어 있지만 사실 public abstract가 생략된 것이기 때문에 실제로는 public abstract void move(int x, int y)이다. 그래서 이를 구현하는 Fighter클래스에서는 void move(int x, int y)의 접근 제어자를 반드시 public으로 해야 하는 것이다.
+
+## 인터페이스를 이용한 다중상속
+
+인터페이스는 static상수만 정의할 수 있으므로 조상 클래스의 멤버변수와 충돌하는 경우는 거의 없고 충돌된다 하더라도 클래스 이름을 붙여서 구분이 가능하다.
+
+추상메서드는 구현 내용이 전혀 없으므로 조상 클래스의 메서드와 선언부가 일치하는 경우에는 당연히 조상 클래스 쪽의 메서드를 상속 받으면 되므로 문제되지 않는다.
+
+하지만, 이렇게 하면 멤버의 충돌은 피할 수 있지만, 다중상속의 장점을 잃어버리게 된다.
+
+만약 두 개의 클래스로부터 상속을 받아야 할 상황이라면, 두 조상 클래스 중에서 비중이 높은 쪽을 선택하고 다른 한쪽은 클래스 내부에 멤버로 포함시키는 방식으로 처리하거나 어느 한쪽의 필요한 부분을 뽑아서 인터페이스로 만든 다음 구현 하도록 한다.
+
+```java
+public class Tv {
+    protected boolean power;
+    protected int channel;
+    protected int volume;
+    
+    public void power() { power = !power; }
+    public void channelUp() { channel++; }
+    public void channelDown() { channel--; }
+    public void volumeUp() { volume++; }
+    public void volumeDown() { volume--; }
+}
+
+public class VCR {
+    protected int counter;
+    
+    public void play() {
+        // Tape 재생
+    }
+    
+    public void stop() {
+        // 재생 멈춤.
+    }
+    
+    public void reset() {
+        counter = 0;
+    }
+    
+    public int getCounter() {
+        return counter;
+    }
+    
+    public void setCounter(int c) {
+        counter = c;
+    }
+}
+```
+
+TVCR클래스를 작성하기 위해 두 클래스로부터 상속을 받을 수만 있으면 좋겠지만 다중상속을 허용하지 않으므로, 한 쪽만 선택하여 상속 받고 나머지 한 쪽은 클래스 내에 포함시켜서 내부적으로 인스턴스를 생성해서 사용하도록 한다.
+
+```java
+public interface IVCR {
+    public void play();
+    public void stop();
+    public void reset();
+    public int getCounter();
+    public void setCounter(int c);
+}
+```
+
+VCR클래스에 정의된 메서드와 일치하는 추상 메서드 작성.
+
+```java
+public class TVCR extends Tv implements IVCR {
+    VCR vcr = new VCR();
+    
+    public void play() {
+        vcr.play();
+    }
+    
+    public void stop() {
+        vcr.stop();
+    }
+    
+    public void reset() {
+        vcr.reset();
+    }
+    
+    public int getCounter() {
+        return vcr.getCounter();
+    }
+    
+    public void setCounter(int c) {
+        vcr.setCounter(c);
+    }
+}
+```
+
+IVCR인터페이스를 구현하기 위해서는 새로 메서드를 작성해야하는 부담이 있지만 이처럼 VCR클래스의 인스턴스를 사용하면 손쉽게 다중상속을 구현할 수 있다. 또한 VCR클래스의 내용이 변경되어도 변경된 내용이 TVCR클래스에도 자동적으로 반영되는 효과도 얻을 수 있다.
+
+## 인터페이스를 이용한 다형성
