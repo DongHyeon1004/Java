@@ -2605,12 +2605,398 @@ interface MyInterface {
     
     인터페이스를 구현한 클래스에서 디폴트 메서드를 오버라이딩해야 한다.
     
-2. **디폴트 메서드와 조상 클래스 메서드 간의돌**
+2. **디폴트 메서드와 조상 클래스 메서드 간의 충돌**
     
     조상 클래스의 메서드가 상속되고, 디폴트 메서드는 무시된다.
     
 
 ```java
 //ex30
+class DefaultMethodTest {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.method1();
+        c.method2();
+        MyInterface.staticMethod();
+        MyInterface2.staticMethod();
+    }
+}
 
+class Child extends Parent implements MyInterface, MyInterface2 {
+    public void method1() {
+        System.out.println("method() in Child");
+    }
+}
+
+class Parent {
+    public void method2() {
+        System.out.println("method2() in Parent");
+    }
+}
+
+interface MyInterface {
+    default void method1() {
+        System.out.println("method1() in MyInterface");
+    }
+
+    default void method2() {
+        System.out.println("method2() in MyInterfcae");
+    }
+
+    static void staticMethod() {
+        System.out.println("staticMethod() in MyInterface");
+    }
+}
+
+interface MyInterface2 {
+    default void method1() {
+        System.out.println("method1() in MyInterface2");
+    }
+
+    static void staticMethod() {
+        System.out.println("staticMethod() in MyInterface2");
+    }
+}
+
+실행결과
+method1() in Child
+method2() in Parent
+staticMethod() in MyInterface
+staticMethod() in MyInterface2
 ```
+
+---
+
+# 내부 클래스(inner class)
+
+## 내부 클래스란?
+
+**내부 클래스** : 클래스 내에 선언된 클래스
+
+두 클래스가 서로 긴밀한 관계에 있기 때문에 클래스에 다른 클래스를 선언한다.
+
+**내부 클래스 장점**
+
+1. 내부 클래스에서 외부 클래스의 멤버들을 쉽게 접근할 수 있다.
+2. 코드의 복잡성을 줄일 수 있다(캡슐화).
+
+```java
+class A { // 외부 클래스
+    ...
+    class B { // 내부 클래스
+        ...
+    }
+    ...
+}
+```
+
+B는 A의 내부 클래스(inner class)가 되고 A는 B를 감싸고 있는 외부 클래스(outer class)가 된다.
+
+내부 클래스인 B는 외부 클래스 A를 제외하고는 다른 클래스에서 잘 사용되지 않는 것이어야 한다.
+
+## 내부 클래스의 종류와 특징
+
+내부 클래스의 종류는 변수의 선언위치에 따른 종류와 같다.
+
+- **인스턴스 클래스(instance class)** : 외부 클래스의 멤버변수 선언위치에 선언하며, 외부 클래스의 인스턴스멤버처럼 다루어진다. 주로 외부 클래스의 인스턴스멤버들과 관련된 작업에 사용될 목적으로 선언된다.
+
+- **스태틱 클래스(static class)** : 외부 클래스의 멤버변수 선언위치에 선언하며, 외부 클래스의 static멤버처럼 다루어진다. 주로 외부 클래스의 static멤버, 특히 static메서드에서 사용될 목적으로 선언된다.
+
+- **지역 클래스(local class)** : 외부 클래스의 메서드나 초기화블럭 안에 선언하며, 선언된 영역 내부에서만 사용될 수 있다.
+
+- **익명 클래스(anonymous class)** : 클래스의 선언과 객체의 생성을 동시에 하는 이름없는 클래스(일회용)
+
+## 내부 클래스의 선언
+
+```java
+class Outer {
+    class InstanceInner {}
+    static class StaticInner {}
+
+    void myMethod() {
+        class LocalInner {}
+    }
+}
+```
+
+외부 클래스(Outer)에 3개의 서로 다른 종류의 내부 클래스를 선언했다. 내부 클래스의 선언위치가 변수의 선언위치와 동일하다.
+
+각 내부 클래스의 선언위치에 따라 같은 선언위치의 변수와 동일한 유효범위(scope)와 접근성(accessibility)을 갖는다.
+
+## 내부 클래스의 제어자와 접근성
+
+```java
+class Outer {
+    private class InstanceInner {}
+    protected static class StaticInner {}
+
+    void myMethod() {
+        class LocalInner {}
+    }
+}
+```
+
+인스턴스클래스(InstanceInner)와 스태틱 클래스(StaticInner)는 외부 클래스(Outer)의 멤버변수와 같은 위치에 선언되며, 또한 멤버변수와 같은 성질을 갖는다. 따라서 내부 클래스가 외부 클래스의 멤버와 같이 간주되고, 인스턴스멤버와 static멤버 간의 규칙이 내부 클래스에도 똑같이 적용된다.
+
+내부 클래스도 클래스이기 때문에 abstract나 final과 같은 제어자를 사용할 수 있을 뿐만 아니라, 멤버변수들처럼 private, protected과 접근제어자도 사용이 가능하다.
+
+```java
+//ex31
+class InnerEx1 {
+    class InstanceInner {
+        int iv = 100;
+        //static int cv = 100;    에러. static변수 선언 불가
+        final static int CONST = 100;  // final static은 상수이므로 허용
+    }
+
+    static class StaticInner {
+        int iv = 200;
+        static int cv = 200; // static클래스만 static멤버 정의 가능
+    }
+
+    void myMethod() {
+        class LocalInner {
+            int iv = 300;
+            //static int cv = 300;  에러. static변수 선언 불가
+            final static int CONST = 300;  // final static은 상수이므로 허용
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(InstanceInner.CONST);
+        System.out.println(StaticInner.cv);
+    }
+}
+
+실행결과
+100
+200
+```
+
+내부 클래스 중에서 스태틱 클래스(StaticInner)만 static멤버를 가질 수 있다. 내부 클래스에 static변수를 선언해야 한다면 스태틱 클래스로 선언해야한다.
+
+다만 final과 static이 동시에 붙은 변수는 상수(constant)이므로 모든 내부 클래스에서 정의가 가능하다.
+
+```java
+//ex32
+class InnerEx2 {
+    class InstanceInner {}
+    static class StaticInner {}
+
+    // 인스턴스멤버 간에는 서로 직접 접근이 가능하다.
+    InstanceInner iv = new InstanceInner();
+    // static멤버 간에는 서로 직접 접근이 가능하다.
+    static StaticInner cv = new StaticInner();
+
+    static void staticMethod() {
+        // static멤버는 인스턴스멤버에 직접 접근할 수 없다.
+        //InstanceInner obj1 = new InstanceInner();
+        StaticInner obj2 = new StaticInner();
+
+        // 굳이 접근하려면 아래와 같이 객체를 생성해야 한다.
+        // 인스턴스클래스는 외부 클래스를 먼저 생성해야만 생성할 수 있다.
+        InnerEx2 outer = new InnerEx2();
+        InstanceInner obj1 = outer.new InstanceInner();
+    }
+
+    void instanceMethod() {
+        // 인스턴스메서드에서는 인스턴스멤버와 static멤버 모두 접근 가능하다.
+        InstanceInner obj1 = new InstanceInner();
+        StaticInner obj2 = new StaticInner();
+        // 메서드 내에 지역적으로 선언된 내부 클래스는 외부에서 접근할 수 없다.
+        //LocalInner lv = new LocalInner();
+    }
+
+    void myMethod() {
+        class LocalInner {}
+        LocalInner lv = new LocalInner();
+    }
+}
+```
+
+인스턴스클래스는 외부 클래스의 인스턴스멤버를 객체생성 없이 바로 사용할 수 있지만, 스태틱 클래스는 외부 클래스의 인스턴스멤버를 개체생성 없이 사용할 수 없다.
+
+마찬가지로 인스턴스클래스는 스태틱 클래스의 멤버들을 객체생성 없이 사용할 수 있지만, 스태틱 클래스에서는 인스턴스클래스의 멤버들을 객체생성 없이 사용할 수 없다.
+
+```java
+//ex33
+class InnerEx3 {
+    private int outerIv = 0;
+    static int outerCv = 0;
+    
+    class InstanceInner {
+        int iiv = outerIv;
+        int iiv2 = outerCv;
+    }
+    
+    static class StaticInner {
+        // 스태틱 클래스는 외부 클래스의 인스턴스멤버에 접근할 수 없다.
+        // int siv = outerIv;
+        static int scv = outerCv;
+    }
+    
+    void myMethod() {
+        int lv = 0;
+        final int LV = 0; // JDK1.8부터 final 생략 가능
+        
+        class LocalInner {
+            int liv = outerIv;
+            int liv2 = outerCv;
+            // 외부 클래스의 지역변수는 final이 붙은 변수(상수)만 접근가능하다.
+            // int liv3 = lv; 에러. JDK1.8부터 에러 아님
+            int liv4 = LV;
+        }
+    }
+}
+```
+
+인스턴스클래스(InstanceInner)는 외부 클래스(InnerEx3)의 인스턴스멤버이기 때문에 인스턴스변수 outerIv와 static변수 outerCv를 모두 사용할 수 있다. outerIv의 접근 제어자가 private일지라도 사용가능하다.
+
+스태틱 클래스(StaticInner)는 외부 클래스(InnerEx3)의 static멤버이기 때문에 외부 클래스의 인스턴스멤버인 outerIv와 InstanceInner을 사용할 수 없다. 단지 static멤버인 outerCv만 사용할 수 있다.
+
+지역 클래스(LocalInner)는 외부 클래스의 인스턴스멤버와 static멤버를 모두 사용할 수 있으며, 지역 클래스가 포함된 메서드에 정의된 지역변수도 사용할 수 있다. 단, final이 붙은 지역변수만 접근 가능한데 그 이유는 메서드가 수행을 마쳐서 지역변수가 소멸된 시점에도, 지역 클래스의 인스턴스가 소멸된 지역변수를 참조하려는 경우가 발생할 수 있기 때문인다.
+
+```java
+//ex 34
+class Outer {
+    class InstanceInner {
+        int iv = 100;
+    }
+    
+    static class StaticInner {
+        int iv = 200;
+        static int cv = 300;
+    }
+    
+    void myMethod() {
+        class LocalInner {
+            int iv = 400;
+        }
+    }
+}
+
+class InnerEx4 {
+    public static void main(String[] args) {
+        /* 인스턴스클래스의 인스턴스를 생성하려면
+        외부 클래스의 인스턴스를 먼저 생성해야 한다. */
+        Outer oc = new Outer();
+        Outer.InstanceInner ii = oc.new InstanceInner();
+        
+        System.out.println("ii.iv : " + ii.iv);
+        System.out.println("Outer.StaticInner.cv : " + Outer.StaticInner.cv);
+        
+        // 스태틱 내부 클래스의 인스턴스는 외부 클래스를 먼저 생성하지 않아도 된다.
+        Outer.StaticInner si = new Outer.StaticInner();
+        System.out.println("si.iv : " + si.iv);
+    }
+}
+
+실행결과
+ii.iv : 100
+Outer.StaticInner.cv : 300
+si.iv : 200
+```
+
+```java
+//ex35
+class Outer {
+    int value = 10; // Outer.this.value
+    
+    class Inner {
+        int value = 20; // this.value
+        
+        void method1() {
+            int value = 30;
+            System.out.println("           value : " + value);
+            System.out.println("      this.value : " + this.value);
+            System.out.println("Outer.this.value : " + Outer.this.value);
+        }
+    }
+}
+
+class InnerEx5 {
+    public static void main(String[] args) {
+        Outer outer = new Outer();
+        Outer.Inner inner = outer.new Inner();
+        inner.method1();
+    }
+}
+
+실행결과
+           value : 30
+      this.value : 20
+Outer.this.value : 10
+```
+
+내부 클래스와 외부 클래스에 선언된 변수의 이름이 같을 때 변수 앞에 **this** 또는 **외부 클래스명.this**를 붙여서 서로 구별할 수 있다.
+
+## 익명 클래스(anonymous class)
+
+클래스의 선언과 객체의 생성을 동시에 하기 때문에 단 한번만 사용될 수 있고 오직 하나의 객체만을 생성할 수 있는 일회용 클래스이다.
+
+```java
+new 조상클래스이름() {
+    // 멤버 선언
+}
+
+    또는
+
+new 구현인터페이스이름() {
+    // 멤버 선언
+}
+```
+
+이름이 없기 때문에 생성자도 가질 수 없으며, 조상클래스의 이름이나 구현하고자 하는 인터페이스의 이름을 사용해서 정의하기 때문에 하나의 클래스로 상속받는 동시에 인터페이스를 구현하거나 둘 이상의 인터페이스를 구현할 수 없다. 오로지 단 하나의 클래스를 상속받거나 단 하나의 인터페이스만을 구현할 수 있다.
+
+```java
+//ex36
+class InnerEx6 {
+    Object iv = new Object() { void method() {} }; // 익명 클래스
+    static Object cv = new Object() { void method() {} }; // 익명 클래스
+
+    void myMethod() {
+        Object lv = new Object() { void method() {} }; // 익명 클래스
+    }
+}
+```
+
+익명 클래스는 이름이 없기 때문에 **외부 클래스명$숫자.class**의 형식으로 클래스파일명이 결정된다.
+
+```java
+//ex37
+import java.awt.*;
+import java.awt.event.*;
+
+class InnerEx7 {
+    public static void main(String[] args) {
+        Button b = new Button("Start");
+        b.addActionListener(new EventHandler());
+    }
+}
+
+class EventHandler implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("ActionEvent occurred!!!");
+    }
+}
+```
+
+```java
+//ex38
+import java.awt.*;
+import java.awt.event.*;
+
+class InnerEx8 {
+    public static void main(String[] args) {
+        Button b = new Button("Start");
+        b.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("ActionEvent occurred!!!");
+                }
+            }
+        );
+    }
+}
+```
+
+먼저 두 개의 독립된 클래스를 작성한 다음에, 다시 익명클래스를 이용하여 변경하면 보다 쉽게 코드를 작성할 수 있다.
