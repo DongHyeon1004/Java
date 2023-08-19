@@ -2205,3 +2205,412 @@ public class TVCR extends Tv implements IVCR {
 IVCR인터페이스를 구현하기 위해서는 새로 메서드를 작성해야하는 부담이 있지만 이처럼 VCR클래스의 인스턴스를 사용하면 손쉽게 다중상속을 구현할 수 있다. 또한 VCR클래스의 내용이 변경되어도 변경된 내용이 TVCR클래스에도 자동적으로 반영되는 효과도 얻을 수 있다.
 
 ## 인터페이스를 이용한 다형성
+
+인터페이스 역시 이를 구현한 클래스의 조상이라 할 수 있으므로 해당 인터페이스 타입의 참조변수로 이를 구현한 클래스의 인스턴스를 참조할 수 있으며, 인터페이스 타입으로 형변환도 가능하다.
+
+```java
+Fighter f = (Fightable)new Fighter();
+또는
+FIghtable f = new Fighter;
+```
+
+인터페이스 Fightable을 클래스 Fighter가 구현했을 때, 다음과 같이 Fighter인스턴스를 Fightable타입의 참조변수로 참조하는 것이 가능하다.
+
+```java
+void attack(Fightable f) {
+    // ...
+}
+```
+
+인터페이스는 메서드의 매개변수의 타입으로 사용될 수 있다.
+
+인터페이스 타입의 매개변수가 갖는 의미는 메서드 호출 시 해당 인터페이스를 구현한 클래스의 인스턴스를 매개변수로 제공해야한다는 것이다.
+
+```java
+class Fighter extends Unit implements Fightable {
+    public void move(int x, int y) { /* 내용 생략 */ }
+    public void attack(Fightable f) { /* 내용 생략 */ }
+} 
+```
+
+attack메서드를 호출할 때는 매개변수로 Fightable인터페이스를 구현한 클래스의 인스턴스를 넘겨줘야 한다.
+
+attack메서드의 매개변수로 Fighter인스턴스를 넘겨줄 수 있다. 즉, **attack(new Fighter( ))**와 같이 할 수 있다.
+
+```java
+Fightable method() {
+    ...
+    Fighter f = new Fighter();
+    return f;
+}
+```
+
+메서드의 리턴타입으로 인터페이스의 타입을 지정하는 것도 가능하다.
+
+**리턴타입이 인터페이스라는 것은 메서드가 해당 인터페이스를 구현한 클래스의 인스턴스를 반환한다는 것을 의미한다.**
+
+```java
+//ex25
+interface Parseable {
+    // 구문 분석작업 실행
+    public abstract void parse(String fileName);
+}
+
+class ParserManager {
+    // 리턴 타입이 Parseable인터페이스
+    public static Parseable getParser(String type) {
+        if (type.equals("XML")) 
+            return new XMLParser();
+        else
+        {
+            Parseable p = new HTMLParser();
+            return p;
+        }
+    }
+}
+
+class XMLParser implements Parseable {
+    public void parse(String fileName) {
+        /* 구문 분석작업 수행 코드 작성 */
+        System.out.println(fileName + "- XML parsing completed.");
+    }
+}
+
+class HTMLParser implements Parseable {
+    public void parse(String fileName) {
+        /* 구문 분석작업 수행 코드 작성 */
+        System.out.println(fileName + "- HTML parsing completed.");
+    }
+}
+
+class ParserTest {
+    public static void main(String[] args) {
+        Parseable parser = ParserManager.getParser("XML");
+        parser.parse("document.xml");
+        parser = ParserManager.getParser("HTML");
+        parser.parse("document2.html");
+    }
+}
+
+실행결과
+document.xml - XML parsing completed.
+document2.html - HTML parsing completed.
+```
+
+ParserManager클래스의 getParser메서드는 매개변수로 넘겨받는 type의 값에 따라 XMLParser인스턴스 또는 HTMLParser인스턴스를 반환한다.
+
+## 인터페이스의 장점
+
+1. **개발시간을 단축시킬 수 있다.**
+    
+    일단 인터페이스가 작성되면, 이를 사용해서 프로그램을 작성하는 것이 가능하다. 메서드를 호출하는 쪽에서는 메서드의 내용에 관계없이 선언부만 알면 되기 때문이다.
+    
+    동시에 다른 한 쪽에서는 인터페이스를 구현하는 클래스를 작성하게 되면, 인터페이스를 구현하는 클래스가 작성될 때까지 기다리지 않고도 양쪽에서 동시에 개발을 진행할 수 있다.
+    
+2. **표준화가 가능하다.**
+    
+    프로젝트에 사용되는 기본 틀을 인터페이스로 작성한 다음, 개발자들에게 인터페이스를 구현하여 프로그램을 작성하도록 함으로써 보다 일관되고 정형화된 프로그램의 개발이 가능하다.
+    
+3. **서로 관계없는 클래스들에게 관계를 맺어 줄 수 있다.**
+    
+    서로 상속관계에 있지도 않고, 같은 조상클래스를 가지고 있지 않은 서로 아무런 관계도 없는 클래스들에게 하나의 인터페이스를 공통적으로 구현하도록 함으로써 관계를 맺어 줄 수 있다.
+    
+4. **독립적인 프로그래밍이 가능하다.**
+    
+    인터페이스를 이용하면 클래스의 선언과 구현을 분리시킬 수 있기 때문에 실제구현에 독립적인 프로그램을 작성하는 것이 가능하다. 클래스와 클래스간의 직접적인 관계를 인터페이스를 이용해서 간접적인 관계로 변경하면, 한 클래스의 변경이 관련된 다른 클래스에 영향을 미치지 않는 독립적인 프로그래밍이 가능하다.
+    
+
+```java
+//ex26
+class RepairableTest {
+    public static void main(String[] args) {
+        Tank tank = new Tank();
+        Dropship dropship = new Dropship();
+
+        Marine marine = new Marine();
+        SCV scv = new SCV();
+        scv.repair(tank);
+        scv.repair(dropship);
+        //scv.repair(marine);  에러발생
+    }
+}
+
+interface Repairable {}
+
+class Unit {
+    int hitPoint;
+    final int MAX_HP;
+    Unit(int hp) {
+        MAX_HP = hp;
+    }
+    //....
+}
+
+class GroundUnit extends Unit {
+    GroundUnit(int hp) {
+        super(hp);
+    }
+}
+
+class AirUnit extends Unit {
+    AirUnit(int hp) {
+        super(hp);
+    }
+}
+
+class Tank extends GroundUnit implements Repairable {
+    Tank() {
+        super(150);
+        hitPoint = MAX_HP;
+    }
+
+    public String toString() {
+        return "Tank";
+    }
+    //...
+}
+
+class Dropship extends AirUnit implements Repairable {
+    Dropship() {
+        super(125);
+        hitPoint = MAX_HP;
+    }
+
+    public String toString() {
+        return "Dropship";
+    }
+    //...
+}
+
+class Marine extends GroundUnit {
+    Marine() {
+        super(40);
+        hitPoint = MAX_HP;
+    }
+    //...
+}
+
+class SCV extends GroundUnit implements Repairable {
+    SCV() {
+        super(60);
+        hitPoint = MAX_HP;
+    }
+
+    void repair(Repairable r) {
+        if (r instanceof Unit) {
+            Unit u = (Unit)r;
+            while (u.hitPoint != u.MAX_HP) {
+                /* Unit의 HP를 증가시킨다. */
+                u.hitPoint++;
+            }
+            System.out.println(u.toString() + "의 수리가 끝났습니다.");
+        }
+    }
+    //...
+}
+
+실행결과
+Tank의 수리가 끝났습니다.
+Dropship의 수리가 끝났습니다.
+```
+
+게임에 나오는 모든 유닛들의 최고 조상은 Unit클래스고 유닛의 종류는 지상유닛(GroundUnit)과 공중유닛(AirUnit)으로 나누어진다. 
+
+수리가 가능한 유닛의 개수만큼 다른 버전의 오버로딩된 메서드를 정의하는 것을 피하기 위해 매개변수의 타입을 이 들의 공통 조상으로 하면 좋겠지만 Dropship은 공통조상이 다르기 때문에 공통조상의 타입으로 메서드를 정의한다고 해도 최소한 2개의 메서드가 필요할 것이다.
+
+인터페이스를 이용하면 기존의 상속체계를 유지하면서 공통점을 부여할 수 있다.
+
+Repairable이라는 인터페이스를 정의하고 수리가 가능한 기계화 유닛에게 이 인터페이스를 구현하도록 하면 된다.
+
+## 인터페이스의 이해
+
+**인터페이스를 이해하기 위한 두 가지 사항**
+
+- 클래스를 사용하는 쪽(User)과 클래스를 제공하는 쪽(Provider)이 있다.
+- 메서드를 사용(호출)하는 쪽(User)에서는 사용하려는 메서드(Provider)의 선언부만 알면 된다. (내용은 몰라도 된다.)
+
+```java
+//ex27
+class A {
+    public void methodA(B b) {
+        b.method();
+    }
+}
+
+class B {
+    public void methodB() {
+        System.out.println("methodB()");
+    }
+}
+
+class InterfaceTest {
+    public static void main(String[] args) {
+        A a = new A();
+        a.methodA(new B());
+    }
+}
+
+실행결과
+methodB()
+```
+
+클래스 A(User)는 클래스 B(Provider)의 인스턴스를 생성하고 메서드를 호출한다. 이 두 클래스는 서로 직접적인 관계다.
+
+이 경우 클래스 A를 작성하려면 클래스 B가 이미 작성되어 있어야 하고, 클래스 B의 methodB()의 선언부가 변경되면, 클래스 A도 변경되어야 한다.
+
+이렇게 직접적인 관계의 두 클래스는 한 쪽(Provider)가 변경되면 다른 한 쪽(User)도 변경되어야 한다는 단점이 있다.
+
+그러나 클래스 A가 클래스 B를 직접 호출하지 않고 인터페이스를 매개체로 해서 클래스 A가 인터페이스를 통해서 클래스 B의 메서드에 접근하도록 하면, 클래스 B에 변경 사항이 생기거나 클래스 B와 같은 기능의 다른 클래스로 대체 되어도 클래스 A는 전혀 영향을 받지 않도록 하는 것이 가능하다.
+
+```java
+interface I {
+    public abstract void methodB();
+}
+```
+
+클래스 B에 정의된 메서드를 추상메서드로 정의하는 인터페이스 I를 정의
+
+```java
+class B implements I {
+    public void methodB() {
+        System.out.println("methodB in B class");
+    }
+}
+```
+
+클래스 B가 인터페이스 I를 구현
+
+```java
+class A {
+    public void methodA(I i) {
+        i.methodB();
+    }
+}
+```
+
+클래스 A는 클래스 B 대신 인터페이스 I를 사용해서 작성 가능
+
+이제 클래스 A와 클래스 B는 간접적인 관계로 바뀐 것이다.
+
+클래스 A는 여전히 클래스 B의 메서드를 호출하지만 클래스 A는 인터페이스 I하고만 직접적인 관계에 있기 때문에 클래스 B의 변경에 영향을 받지 않는다.
+
+클래스 A는 인터페이스를 통해 실제로 사용하는 클래스의 이름을 몰라도 되고 심지어는 실제로 구현된 클래스가 존재하지 않아도 문제되지 않는다. 클래스 A는 오직 직접적인 관계에 있는 인터페이스 I의 영향만 받는다.
+
+```java
+//ex28
+class A {
+    void autoPlay(I i) {
+        i.play();
+    }
+}
+
+interface I {
+    public abstract void play();
+}
+
+class B implements I {
+    public void play() {
+        System.out.println("play in B class");
+    }
+}
+
+class C implements I {
+    public void play() {
+        System.out.println("play in C class");
+    }
+}
+
+class InterfaceTest2 {
+    public static void main(String[] args) {
+        A a = new A();
+        a.autoPlay(new B());
+        a.autoPlay(new C());
+    }
+}
+
+실행결과
+play in B class
+play in C class
+```
+
+클래스 A가 인터페이스 I를 사용해서 작성되긴 했지만, 이처럼 매개변수를 통해서 인터페이스 I를 구현한 클래스의 인스턴스를 동적으로 제공 받아야 한다.
+
+```java
+//ex29
+class InterfaceTest3 {
+    public static void main(String[] args) {
+        A a = new A();
+        a.methodA();
+    }
+}
+
+class A {
+    void methodA() {
+        I i = InstanceManager.getInstance();
+        i.methodB();
+        System.out.println(i.toString());
+    }
+}
+
+interface I {
+    public abstract void methodB();
+}
+
+class B implements I {
+    public void methodB() {
+        System.out.println("methodB in B class");
+    }
+    
+    public String toString() { return "class B"; }
+}
+
+class InstanceManager {
+    public static I getInstance() {
+        return new B(); // 다른 인스턴스로 바꾸려면 여기만 변경하면 됨.
+    }
+}
+
+실행결과
+methodB in B class
+class B
+```
+
+인스턴스를 직접 생성하지 않고, getInstance( )라는 메서드를 통해 제공받는다. 이렇게 하면, 나중에 다른 클래스의 인스턴스로 변경되어도 A클래스의 변경없이 getInstance( )만 변경하면 된다는 장점이 생긴다.
+
+## 디폴트 메서드와 static메서드
+
+**static메서드**
+
+- static메서드는 인스턴스와 관계가 없는 독립적인 메서드이기 때문에 예전부터 추가하지 못할 이유가 없었지만, 자바를 보다 쉽게 배울 수 있도록 규칙을 단순히 할 필요가 있어서 인터페이스의 모든 메서드는 추상 메서드이어야 한다는 규칙에 예외를 두지 않았다.
+- 그래서 인터페이스와 관련된 static메서드는 별도의 클래스에 따로 두어야 했다.
+- 인터페이스의 static메서드 역시 접근 제어자가 항상 public이며, 생략할 수 있다.
+
+**디폴트 메서드(default method)** : 추상 메서드의 기본적인 구현을 제공하는 메서드
+
+- 추상 메서드가 아니기 때문에 디폴트 메서드가 새로 추가되어도 해당 인터페이스를 구현한 클래스를 변경하지 않아도 된다.
+- 디폴트 메서드는 앞에 키워드 default를 붙이며, 추상 메서드와 달리 일반 메서드처럼 몸통{ }이 있어야 한다.
+- 디폴트 메서드 역시 접근 제어자가 public이며, 생략 가능하다.
+- 추상 메서드를 추가하는 대신, 디폴트 메서드를 추가하면, 기존의 MyInterface를 구현 클래스를 변경하지 않아도 된다.
+
+```java
+interface MyInterface {
+    void method();
+    default void newMethod() {}
+}
+```
+
+**새로 추가된 디폴트 메서드가 기존의 메서드와 이름이 중복되어 충돌하는 경우 해결하는 규칙**
+
+1. **여러 인터페이스의 디폴트 메서드 간의 충돌**
+    
+    인터페이스를 구현한 클래스에서 디폴트 메서드를 오버라이딩해야 한다.
+    
+2. **디폴트 메서드와 조상 클래스 메서드 간의돌**
+    
+    조상 클래스의 메서드가 상속되고, 디폴트 메서드는 무시된다.
+    
+
+```java
+//ex30
+
+```
