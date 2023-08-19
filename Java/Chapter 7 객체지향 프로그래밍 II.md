@@ -33,25 +33,25 @@ class Parent { }
 class Child extends Parent { }
 ```
 
-![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled.png)
+![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/7-1.png)
 
 자손 클래스는 조상 클래스의 모든 멤버를 상속 받기 때문에, Child 클래스는 Parent클래스의 멤버들을 포함한다고 할 수 있다. 다이어그램으로도 표현 가능하다.
 
-![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%201.png)
+![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/7-2.png)
 
 ```java
 class Parent {
-			int age;
+    int age;
 }
 
 class Child extends Parent {
-			void play() {
-					System.out.println("놀자~");
+    void play() {
+        System.out.println("놀자~");
 			}
 }
 ```
 
-![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%202.png)
+![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/7-3.png)
 
 - Parent클래스에 age라는 정수형 변수를 멤버변수로 추가하면, 자손 클래스는 조상의 멤버를 모두 상속 받기 때문에, Child클래스는 자동적으로 age라는 멤버변수가 추가된 것과 같은 효과를 얻는다.
 - Child클래스에 새로운 멤버인 play()메서드를 추가해도 조상인 Parent클래스는 아무런 영향도 받지 않는다. 자손 클래스가 변경되는 것은 조상 클래스에 아무런 영향을 주지 못한다.
@@ -67,7 +67,7 @@ class Child2 extends Parent { }
 class GrandChild extends Child { }
 ```
 
-![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%203.png)
+![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/7-4.png)
 
 - Child클래스와 Child2클래스는 조상의 멤버를 상속 받기 때문에, Parent클래스 하나만 변경하면 되므로 작업이 간단해진다. 같은 내용의 코드를 한 곳에서 관리함으로써 코드의 중복이 줄어든다.
 - 같은 내용의 코드를 하나 이상의 클래스에 중복적으로 추가해야하는 경우 상속관계를 이용해서 코드의 중복을 최소화 해야한다.
@@ -120,14 +120,14 @@ Hello, World
 
 ```java
 class Circle {                         class Circle {
-			int x;                                 **Point c = new Point();**
-			int y;              **-->**                int r;
-			int r;                           }
+    int x;                                 Point c = new Point();
+    int y;                -->              int r;
+    int r;                             }
 }
 
 class Point {
-			int x;
-			int y;
+    int x;
+    int y;
 }
 ```
 
@@ -408,20 +408,20 @@ toString()이나 equals(Object s) 같은 메서드를 따로 정의하지 않고
 
 ```java
 class Point {
-		int x;
-		int y;
+    int x;
+    int y;
 
-		String getLocation() {
-					return "x : " + x + ", y : " + y;
-		}
+    String getLocation() {
+        return "x : " + x + ", y : " + y;
+    }
 }
 
 class Point3D extends Point {
-		int z;
+    int z;
 		
-		String getLocation() {    // 오버라이딩
-					return "x : " + x + ", y : " + y + ", z : " + z;
-		}
+    String getLocation() {    // 오버라이딩
+        return "x : " + x + ", y : " + y + ", z : " + z;
+    }
 }
 ```
 
@@ -447,44 +447,44 @@ Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이�
     
 
 1. **조상 클래스의 메서드보다 많은 수의 예외를 선언할 수 없다.**
-    
-    ```java
-    class Parent {
-    		void parentMethod() throws IOException, SQLException {
-    					...
-    		}
+
+```java
+class Parent {
+    void parentMethod() throws IOException, SQLException {
+        ...
     }
+}
     
-    class Child extends Parent {
-    		void parentMethod() throws IOException {
-    					...
-    		}
+class Child extends Parent {
+    void parentMethod() throws IOException {
+        ...
     }
-    ```
+}
+```
     
     Child클래스의 parentMethod()에 선언된 예외의 개수가 조상인 Parent클래스의 parentMethod()에 선언된 예외의 개수보다 적으므로 바르게 오버라이딩 됐다.
     
-    ```java
-    class Parent {
-    		void parentMethod() throws IOException, SQLException {
-    					...
-    		}
+```java
+class Parent {
+    void parentMethod() throws IOException, SQLException {
+        ...
     }
+}
     
-    class Child extends Parent {
-    		void parentMethod() throws Exception {
-    					...
-    		}
+class Child extends Parent {
+    void parentMethod() throws Exception {
+        ...
     }
-    ```
+}
+```
     
-    단순히 선언된 예외의 개수의 문제가 아니다.
+단순히 선언된 예외의 개수의 문제가 아니다.
     
     분명히 조상 클래스에 정의된 메서드보다 적은 개수의 예외를 선언한 것처럼 보이지만 Exception은 모든 예외의 최고 조상이므로 가장 많은 개수의 예외를 던질 수 있도록 선언한 것이다.
     
     조건을 만족시키지 못하는 잘못된 오버라이딩이다.
     
-2. **인스턴스메서드를 static메서드로 또는 그 반대로 변경할 수 없다.**
+3. **인스턴스메서드를 static메서드로 또는 그 반대로 변경할 수 없다.**
 
 ## 오버로딩 vs 오버라이딩
 
@@ -494,16 +494,16 @@ Point3D클래스는 3차원 좌표계의 한 점을 표현하기 위한 것이�
 
 ```java
 class Parent {
-		void parentMethod() {}
+    void parentMethod() {}
 }
 
 class Child extends Parent {
-		void parentMethod() {} // 오버라이딩
-		void parentMethod(int i) {} // 오버로딩
+    void parentMethod() {} // 오버라이딩
+    void parentMethod(int i) {} // 오버로딩
 		
-		void childMethod() {}
-		void childMethod(int i) {} // 오버로딩
-		void childMethod() {} // 오류.
+    void childMethod() {}
+    void childMethod(int i) {} // 오버로딩
+    void childMethod() {} // 오류.
 }
 ```
 
@@ -950,25 +950,25 @@ java.awt.event.WindowAdapter는 아무런 내용이 없는 메서드들만 정�
 
 ```java
 public class Time {
-			private int hour;
-			private int minute;
-			private int second;
+    private int hour;
+    private int minute;
+    private int second;
 
-			public int getHour() { return hour; }
-			public void setHour(int hour) {
-						if (hour < 0 || hour > 23) return;
-						this.hour = hour;
-			}
-			public int getMinute() { return minute; }
-			public void setMinute(int minute) {
-						if (minute < 0 || minute > 59) return;
-						this.minute = minute;
-			}
-			public int getSecond() { return second; }
-			public void setSecond(int second) {
-						if (second < 0 || second > 59) return;
-						this.second = second;
-			}
+    public int getHour() { return hour; }
+    public void setHour(int hour) {
+        if (hour < 0 || hour > 23) return;
+            this.hour = hour;
+    }
+    public int getMinute() { return minute; }
+    public void setMinute(int minute) {
+        if (minute < 0 || minute > 59) return;
+            this.minute = minute;
+    }
+    public int getSecond() { return second; }
+    public void setSecond(int second) {
+        if (second < 0 || second > 59) return;
+            this.second = second;
+    }
 }
 ```
 
@@ -1034,17 +1034,17 @@ class Time {
 
 ```java
 class Singleton {
-			...
-			private static Singleton s = new Singleton();
-			private Singleton() {
-						...
-			}
+    ...
+    private static Singleton s = new Singleton();
+    private Singleton() {
+        ...
+    }
 
-			// 인스턴스를 생성하지 않고도 호출할 수 있어야 하므로 static이어야 한다.
-			public static Singleton getInstance() {
-						return s;
-			}
-			...
+    // 인스턴스를 생성하지 않고도 호출할 수 있어야 하므로 static이어야 한다.
+    public static Singleton getInstance() {
+        return s;
+    }
+    ...
 }
 ```
 
@@ -1122,17 +1122,17 @@ class SingletonTest {
 
 ```java
 class Tv {
-			boolean power;
-			int channel;
+    boolean power;
+    int channel;
 
-			void power() { power = !power; }
-			void channelUp() { ++channel; }
-			void channelDown() { --channel; }
+    void power() { power = !power; }
+    void channelUp() { ++channel; }
+    void channelDown() { --channel; }
 }
 
 class CaptionTv extends Tv {
-			String text;
-			void cpation() { /*내용생략*/ }
+    String text;
+    void cpation() { /*내용생략*/ }
 }
 ```
 
@@ -1190,26 +1190,26 @@ CaptionTv c = new Tv(); // 컴파일 에러 발생.
 
 ```java
 class Car {
-			String color;
-			int door;
-			void drive() {
-					 System.out.println("drive, Brrrr~");
-			}
-			void stop() {
-					 System.out.println("stop!!");
-			}
+    String color;
+    int door;
+    void drive() {
+        System.out.println("drive, Brrrr~");
+    }
+    void stop() {
+        System.out.println("stop!!");
+    }
 }
 
 class FireEngine extends Car {
-			void water() {
-					 System.out.println("water!!");
-			}
+    void water() {
+        System.out.println("water!!");
+    }
 }
 
 class Ambulance extends Car {
-			void siren() {
-					 System.out.println("siren~~~");
-			}
+    void siren() {
+        System.out.println("siren~~~");
+    }
 }
 ```
 
@@ -1288,13 +1288,13 @@ water!!!
     
     Car타입의 참조변수 car를 선언하고 null로 초기화한다.
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%204.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/7-5.png)
     
 2. **FireEngine fe = new FrieEngine();**
     
     FireEngine인스턴스를 생성하고 FireEngine타입의 참조변수가 참조하도록 한다.
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%205.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/7-6.png)
     
 3. **car = fe;**
     
@@ -1302,7 +1302,7 @@ water!!!
     
     이제 참조변수 car를 통해서도 FireEngine인스턴스를 사용할 수 있지만, fe와는 달리 car는 Car타입이므로 Car클래스의 멤버가 아닌 water()는 사용할 수 없다.
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%206.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/7-7.png)
     
 4. **fe2 = (FireEngine)car;**
     
@@ -1310,23 +1310,23 @@ water!!!
     
     이제 참조변수 fe2를 통해서도 FireEngine인스턴스를 사용할 수 있지만, car와는 달리, fe2는 FireEngine타입이므로 FireEngine인스턴스의 모든 멤버를 사용할 수 있다.
     
-    ![Untitled](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20II%206ef6db32535a4e74bc495d8a496648df/Untitled%207.png)
+    ![Untitled](https://github.com/DongHyeon1004/Java/blob/main/Java/image/7-8.png)
     
 
 ```java
 //ex16
 class CastingTest2 {
-	public static void main(String[] args) {
-			Car car = new Car();
-			Car car2 = null;
-			FireEngine fe = null;
+    public static void main(String[] args) {
+        Car car = new Car();
+        Car car2 = null;
+        FireEngine fe = null;
 			
-			car.drive();
-			fe = (FireEngine)car; // 컴파일 OK. 실행 시 에러 발생
-			fe.drive;
-			car2 = fe;
-			car2.drive();
-	}
+        car.drive();
+        fe = (FireEngine)car; // 컴파일 OK. 실행 시 에러 발생
+        fe.drive;
+        car2 = fe;
+        car2.drive();
+    }
 }
 
 실행결과
@@ -1352,20 +1352,20 @@ java.lang.ClassCastException: Car
 ```java
 //ex17
 class IntanceofTest {
-	public static void main(String[] args) {
-			FireEngine fe = new FireEngine();
+    public static void main(String[] args) {
+        FireEngine fe = new FireEngine();
 
-			if (fe instanceof FireEngine) 
-					System.out.println("This is a FireEngine instance.");
+        if (fe instanceof FireEngine) 
+            System.out.println("This is a FireEngine instance.");
 
-			if (fe instanceof Car) 
-					System.out.println("This is a Car instance.");
+        if (fe instanceof Car) 
+            System.out.println("This is a Car instance.");
 
-			if (fe instance of Object) 
-					System.out.println("This is an Object instance.");
+        if (fe instance of Object) 
+            System.out.println("This is an Object instance.");
 
-			System.out.println(fe.getClass().getName());
-	}
+        System.out.println(fe.getClass().getName());
+    }
 }
 class Car { }
 class FireEngine extends Car { }
@@ -1608,7 +1608,7 @@ class Product {
         bonusPoint = (int)(price/10.0);
     }
 
-		Product() { }
+    Product() { }
 }
 
 class Tv extends Product {
@@ -1622,14 +1622,14 @@ class Computer extends Product {
 }
 
 class Audio extends Product {
-		Audio() { super(50); }
-		public String toString() { return "Audio"; }
+    Audio() { super(50); }
+    public String toString() { return "Audio"; }
 
 class Buyer {
     int money = 1000;
     int bonusPoint = 0;
-		Product item[] = new Product[10];
-		int i = 0;
+    Product item[] = new Product[10];
+    int i = 0;
 
     void buy(Product p) {
         if (money < p.price)
@@ -1644,19 +1644,19 @@ class Buyer {
         System.out.println(p + "을/를 구입하셨습니다.");
     }
 
-		void summary() {
-				int sum = 0;
-				String itemList = "";
+    void summary() {
+    int sum = 0;
+    String itemList = "";
 
-				for (int i = 0; i < item.lenght; i++) 
-				{
-						if (item[i] == null) break;
-						sum += item[i].price;
-						itemList += item[i] + ", ";
-				}
-				System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
-				System.out.println("구입하신 제품은 " + itemList + "입니다.");
-		}
+    for (int i = 0; i < item.lenght; i++) 
+    {
+        if (item[i] == null) break;
+        sum += item[i].price;
+        itemList += item[i] + ", ";
+    }
+    System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
+    System.out.println("구입하신 제품은 " + itemList + "입니다.");
+    }
 }
 
 class PolyArgumentTest2 {
@@ -1684,9 +1684,9 @@ Product배열로 구입한 제품들을 저장할 수 있도록 했지만, 배�
 
 ```java
 public class Vector extends AbstractList
-							implements List, Cloneable, java.io.Serializable {
-		protected Object elementData[];
-			...
+    implements List, Cloneable, java.io.Serializable {
+        protected Object elementData[];
+        ...
 }
 ```
 
@@ -1742,10 +1742,10 @@ class Product {
         bonusPoint = (int)(price/10.0);
     }
 
-		Product() {
-				price = 0;
-				bonusPoint = 0;
-		}
+    Product() {
+        price = 0;
+        bonusPoint = 0;
+    }
 }
 
 class Tv extends Product {
@@ -1759,13 +1759,13 @@ class Computer extends Product {
 }
 
 class Audio extends Product {
-		Audio() { super(50); }
-		public String toString() { return "Audio"; }
+    Audio() { super(50); }
+    public String toString() { return "Audio"; }
 
 class Buyer {
     int money = 1000;
     int bonusPoint = 0;
-		Vector item = new Vector();
+    Vector item = new Vector();
 
     void buy(Product p) {
         if (money < p.price)
@@ -1780,50 +1780,50 @@ class Buyer {
         System.out.println(p + "을/를 구입하셨습니다.");
     }
 
-		void refund(Product p) {
-				if (item.remove(p)) {
-						money += p.price;
-						bounsPoint -= p.bonusPoint;
-						System.out.println(p + "을/를 반품하셨습니다.");
-				}
-				else
-						System.out.println("구입하신 제품 중 해당 제품이 없습니다.");
-		}
+    void refund(Product p) {
+    if (item.remove(p)) {
+        money += p.price;
+        bounsPoint -= p.bonusPoint;
+        System.out.println(p + "을/를 반품하셨습니다.");
+    }
+    else
+        System.out.println("구입하신 제품 중 해당 제품이 없습니다.");
+    }
 
-		void summary() {
-				int sum = 0;
-				String itemList = "";
+    void summary() {
+        int sum = 0;
+        String itemList = "";
 
-				if (item.isEmpty()) {
-						System.out.println("구입하신 제품이 없습니다.");
-						return;
-				}
+        if (item.isEmpty()) {
+            System.out.println("구입하신 제품이 없습니다.");
+            return;
+        }
 
-				for (int i = 0; i < item.size(); i++) 
-				{
-						Product p = (Product)item.get(i);
-						sum += p.price;
-						itemList += (i == 0) ? "" + p : ", " + p;
-				}
-				System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
-				System.out.println("구입하신 제품은 " + itemList + "입니다.");
-		}
+        for (int i = 0; i < item.size(); i++) 
+        {
+            Product p = (Product)item.get(i);
+            sum += p.price;
+            itemList += (i == 0) ? "" + p : ", " + p;
+        }
+        System.out.println("구입하신 물품의 총 금액은 " + sum + "만원입니다.");
+        System.out.println("구입하신 제품은 " + itemList + "입니다.");
+    }
 }
 
 class PolyArgumentTest3 {
     public static void main(String[] args) {
         Buyer b = new Buyer();
-				Tv tv = new Tv();
-				Computer com = new Computer();
-				Audio audio = new Audio();
+        Tv tv = new Tv();
+        Computer com = new Computer();
+        Audio audio = new Audio();
 
         b.buy(tv);
-				b.buy(com);
-				b.buy(audio);
-				b.summary();
-				System.out.println();
-				b.refund(com);
-				b.summary();
+        b.buy(com);
+        b.buy(audio);
+        b.summary();
+        System.out.println();
+        b.refund(com);
+        b.summary();
     }
 }
 
