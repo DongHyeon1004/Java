@@ -529,7 +529,6 @@ class Parent {
 }
 
 class Child extends Parent {
-    int x = 20;
     void method() {
         System.out.println("x = " + x);  
         System.out.println("this.x = " + this.x);  
@@ -546,7 +545,7 @@ super.x = 10
 이 경우 모두 같은 변수를 의미하므로 모두 같은 값이 출력된다.
 
 ```java
-//ex5
+//ex6
 class SuperTest {
     public static void main(String[] args) {
         Child c = new Child();
@@ -559,6 +558,7 @@ class Parent {
 }
 
 class Child extends Parent {
+    int x = 20;
     void method() {
         System.out.println("x = " + x);
         System.out.println("this.x = " + this.x);
